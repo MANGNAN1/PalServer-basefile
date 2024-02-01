@@ -7,6 +7,7 @@ wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Start.sh
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.sh
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Stop.sh
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Update.sh
+wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
 echo -e "\e[32m완료.\e[0m"
 
 #dos2unix 설치
