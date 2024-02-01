@@ -24,7 +24,7 @@ elif [ "$action" == "예약제거" ]; then
 
     echo "작업이 제거되었습니다."
 
-elif [ "$action" == "취소" ]; then
+elif [ "$action" == "리스트" ]; then
     crontab -l
 
 elif [ "$action" == "취소" ]; then
