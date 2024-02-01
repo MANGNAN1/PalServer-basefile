@@ -62,6 +62,41 @@ echo -e "\e[32m완료.\e[0m"
 #alias 저장="~/Save.sh"
 #alias 예약="~/Reserve.sh"
 
+# 서버 시작 함수
+서버시작() {
+    ~/Start.sh
+}
+
+# 서버 종료 함수
+서버종료() {
+    ~/Stop.sh
+}
+
+# 서버 리부팅 함수
+서버리붓() {
+    ~/Restart.sh
+}
+
+# 업데이트 함수
+업데이트() {
+    ~/Update.sh
+}
+
+# 사용법 함수
+사용법() {
+    ~/Manual.sh
+}
+
+# 저장 함수
+저장() {
+    ~/Save.sh
+}
+
+# 예약 함수
+예약() {
+    ~/Reserve.sh
+}
+
 #새로고침
 source ~/.bashrc
 
