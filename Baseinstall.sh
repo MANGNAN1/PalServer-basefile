@@ -57,7 +57,10 @@ echo -e "\e[32m완료.\e[0m"
 #alias 저장="~/Save.sh"
 #echo -e "\e[32m완료.\e[0m"
 
+#!/bin/bash
+
 # .bashrc 파일에 명령어 추가
+
 append_to_bashrc() {
     # .bashrc 파일 경로
     bashrc_path="$HOME/.bashrc"
@@ -73,6 +76,7 @@ alias 사용법=\"~/Manual.sh\"
 alias 저장=\"~/Save.sh\"
 alias 예약=\"~/Reserve.sh\"
 "
+
     # 이미 추가되어 있는지 확인
     if grep -q "명령어 한글화" "$bashrc_path"; then
         echo -e "\e[32m이미 추가되어 있습니다.\e[0m"
@@ -88,6 +92,7 @@ alias 예약=\"~/Reserve.sh\"
 
 # 함수 실행
 append_to_bashrc
+
 
 #새로고침
 source ~/.bashrc
