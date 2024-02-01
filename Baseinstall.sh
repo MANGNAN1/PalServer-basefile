@@ -10,6 +10,9 @@ wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Update.s
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
 echo -e "\e[32m완료.\e[0m"
 
+#실행권한 획득
+chmod +x Start.sh Stop.sh Restart.sh Update.sh Manual.sh
+
 #dos2unix 설치
 echo -e "\e[32mdos2uni를 설치합니다.\e[0m"
 sudo apt-get update
