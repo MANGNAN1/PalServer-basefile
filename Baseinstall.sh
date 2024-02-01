@@ -6,12 +6,12 @@ cd "$HOME" || exit
 
 echo -e "\e[32m베이스 파일들을 설치합니다.\e[0m"
 chmod +w ~
-wget -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Start.sh
-wget -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.sh
-wget -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Stop.sh
-wget -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Update.sh
-wget -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
-wget -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Save.sh
+wget -N https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Start.sh
+wget -N https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.sh
+wget -N https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Stop.sh
+wget -N https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Update.sh
+wget -N https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
+wget -N https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Save.sh
 echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
