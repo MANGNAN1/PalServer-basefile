@@ -1,5 +1,8 @@
 #!/bin/bash
-#Start.sh Stop.sh Restart.sh Update.sh 디렉토리 설치 
+# 사용자의 홈 디렉토리로 이동합니다.
+cd "$HOME" || exit
+
+#Start.sh Stop.sh Restart.sh Update.sh Manual.sh 설치 
 
 echo -e "\e[32m베이스 파일들을 설치합니다.\e[0m"
 chmod +w ~
