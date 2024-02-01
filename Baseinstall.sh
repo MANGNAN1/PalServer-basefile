@@ -11,7 +11,7 @@ wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.s
 echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
-chmod +x Start.sh Stop.sh Restart.sh Update.sh Manual.sh
+chmod +x ~/Start.sh ~/Stop.sh ~/Restart.sh ~/Update.sh ~/Manual.sh
 
 #dos2unix 설치
 echo -e "\e[32mdos2uni를 설치합니다.\e[0m"
