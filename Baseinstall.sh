@@ -48,14 +48,13 @@ dos2unix ~/Reserve.sh
 echo -e "\e[32m완료.\e[0m"
 
 #명령어 한글화
-#echo -e "\e[32m명령어 한글화를 진행합니다.\e[0m"
-#alias 서버시작="~/Start.sh"
-#alias 서버종료="~/Stop.sh"
-#alias 서버리붓="~/Restart.sh"
-#alias 업데이트="~/Update.sh"
-#alias 사용법="~/Manual.sh"
-#alias 저장="~/Save.sh"
-#echo -e "\e[32m완료.\e[0m"
+alias 서버시작="~/Start.sh"
+alias 서버종료="~/Stop.sh"
+alias 서버리붓="~/Restart.sh"
+alias 업데이트="~/Update.sh"
+alias 사용법="~/Manual.sh"
+alias 저장="~/Save.sh"
+alias 예약="~/Reserve.sh"
 
 # .bashrc 파일에서 명령어 갱신
 #echo -e "\e[32m명령어 한글화를 진행합니다.\e[0m"
