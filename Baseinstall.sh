@@ -57,17 +57,17 @@ echo -e "\e[32m완료.\e[0m"
 #alias 저장="~/Save.sh"
 #echo -e "\e[32m완료.\e[0m"
 
-#!/bin/bash
-
-# .bashrc 파일에 명령어 추가
-
-append_to_bashrc() {
+# .bashrc 파일에서 명령어 갱신
+#echo -e "\e[32m명령어 한글화를 진행합니다.\e[0m"
+update_bashrc() {
     # .bashrc 파일 경로
     bashrc_path="$HOME/.bashrc"
 
+    # 기존 명령어 삭제
+    sed -i '/# 명령어 한글화/,/# 완료./d' "$bashrc_path"
+
     # 추가할 내용
     append_text="# 명령어 한글화
-echo -e \"\\e[32m명령어 한글화를 진행합니다.\\e[0m\"
 alias 서버시작=\"~/Start.sh\"
 alias 서버종료=\"~/Stop.sh\"
 alias 서버리붓=\"~/Restart.sh\"
@@ -75,24 +75,19 @@ alias 업데이트=\"~/Update.sh\"
 alias 사용법=\"~/Manual.sh\"
 alias 저장=\"~/Save.sh\"
 alias 예약=\"~/Reserve.sh\"
+# 완료.
 "
 
-    # 이미 추가되어 있는지 확인
-    if grep -q "명령어 한글화" "$bashrc_path"; then
-        echo -e "\e[32m이미 추가되어 있습니다.\e[0m"
-    else
-        # 파일 끝에 내용 추가
-        echo "$append_text" >> "$bashrc_path"
-        echo -e "\e[32m추가되었습니다.\e[0m"
+    # 파일 끝에 내용 추가
+    echo "$append_text" >> "$bashrc_path"
+    echo -e "\e[32m갱신되었습니다.\e[0m"
 
-        # 변경사항 즉시 적용
-        source "$bashrc_path"
-    fi
+    # 변경사항 즉시 적용
+    source "$bashrc_path"
 }
 
 # 함수 실행
-append_to_bashrc
-
+update_bashrc
 
 #새로고침
 source ~/.bashrc
