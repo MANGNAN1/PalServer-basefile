@@ -62,6 +62,19 @@ echo -e "\e[32m완료.\e[0m"
 #alias 저장="~/Save.sh"
 #alias 예약="~/Reserve.sh"
 
+echo -e "\e[32m명령어 한글화 실행합니다.\e[0m"
+echo 'alias 서버시작="~/Start.sh"' >> ~/.bashrc
+echo 'alias 서버종료="~/Stop.sh"' >> ~/.bashrc
+echo 'alias 서버리붓="~/Restart.sh"' >> ~/.bashrc
+echo 'alias 업데이트="~/Update.sh"' >> ~/.bashrc
+echo 'alias 사용법="~/Manual.sh"' >> ~/.bashrc
+echo 'alias 저장="~/Save.sh"' >> ~/.bashrc
+echo 'alias 예약="~/Reserve.sh"' >> ~/.bashrc
+
+# 변경된 환경 설정 적용
+source ~/.bashrc
+
+
 # 서버 시작 함수
 서버시작() {
     ~/Start.sh
