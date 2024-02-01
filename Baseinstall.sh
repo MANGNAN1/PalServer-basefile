@@ -34,7 +34,7 @@ alias 서버시작="~/Start.sh"
 alias 서버종료="~/Stop.sh"
 alias 서버리붓="~/Restart.sh"
 alias 업데이트="~/Update.sh"
-alias 업데이트="~/Manual.sh"
+alias 사용법="~/Manual.sh"
 echo -e "\e[32m완료.\e[0m"
 
 #새로고침
