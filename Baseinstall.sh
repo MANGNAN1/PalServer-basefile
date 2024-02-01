@@ -88,9 +88,6 @@ alias 예약=\"$USER_HOME/Reserve.sh\"
 update_bashrc
 
 #새로고침
-source ~/.bashrc
-source ~/.bashrc
-source ~/.bashrc
-source ~/.bashrc
+exec bash
 source ~/.bashrc
 echo -e "\e[32m모든 작업을 완료하였습니다.\e[0m"
