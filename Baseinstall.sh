@@ -11,6 +11,7 @@ wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Stop.sh
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Update.sh
 wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
+wget https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Save.sh
 echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
@@ -32,6 +33,7 @@ dos2unix ~/Stop.sh
 dos2unix ~/Restart.sh
 dos2unix ~/Update.sh
 dos2unix ~/Manual.sh
+dos2unix ~/Save.sh
 echo -e "\e[32m완료.\e[0m"
 
 #명령어 한글화
@@ -41,6 +43,7 @@ alias 서버종료="~/Stop.sh"
 alias 서버리붓="~/Restart.sh"
 alias 업데이트="~/Update.sh"
 alias 사용법="~/Manual.sh"
+alias 저장="~/Save.sh"
 echo -e "\e[32m완료.\e[0m"
 
 #새로고침
