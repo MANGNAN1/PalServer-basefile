@@ -33,11 +33,16 @@ echo -e "\e[32m완료.\e[0m"
 #실행권한 획득
 chmod +x $USER_HOME/Start.sh $USER_HOME/Stop.sh $USER_HOME/Restart.sh $USER_HOME/Update.sh $USER_HOME/Manual.sh $USER_HOME/Save.sh $USER_HOME/Reserve.sh
 
-#dos2unix 설치
-echo -e "\e[32mdos2uni를 설치합니다.\e[0m"
-sudo apt-get update
-sudo apt-get install dos2unix
-echo -e "\e[32m완료.\e[0m"
+# dos2unix 설치 여부 확인
+if command -v dos2unix &> /dev/null; then
+    echo "dos2unix가 이미 설치되어 있습니다. 넘어갑니다."
+else
+    # dos2unix 설치
+    echo "dos2unix를 설치합니다."
+    sudo apt-get update
+    sudo apt-get install dos2unix
+    echo "dos2unix 설치가 완료되었습니다."
+fi
 
 #새로고침
 source ~/.bashrc
