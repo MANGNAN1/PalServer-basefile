@@ -25,6 +25,7 @@ dos2unix ~/Start.sh
 dos2unix ~/Stop.sh
 dos2unix ~/Restart.sh
 dos2unix ~/Update.sh
+dos2unix ~/Manual.sh
 echo -e "\e[32m완료.\e[0m"
 
 #명령어 한글화
@@ -33,6 +34,7 @@ alias 서버시작="~/Start.sh"
 alias 서버종료="~/Stop.sh"
 alias 서버리붓="~/Restart.sh"
 alias 업데이트="~/Update.sh"
+alias 업데이트="~/Manual.sh
 echo -e "\e[32m완료.\e[0m"
 
 #새로고침
