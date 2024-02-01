@@ -54,63 +54,19 @@ dos2unix $USER_HOME/Reserve.sh
 echo -e "\e[32m완료.\e[0m"
 
 #명령어 한글화
-#alias 서버시작="~/Start.sh"
-#alias 서버종료="~/Stop.sh"
-#alias 서버리붓="~/Restart.sh"
-#alias 업데이트="~/Update.sh"
-#alias 사용법="~/Manual.sh"
-#alias 저장="~/Save.sh"
-#alias 예약="~/Reserve.sh"
-
 echo -e "\e[32m명령어 한글화 실행합니다.\e[0m"
-echo 'alias 서버시작="~/Start.sh"' >> ~/.bashrc
-echo 'alias 서버종료="~/Stop.sh"' >> ~/.bashrc
-echo 'alias 서버리붓="~/Restart.sh"' >> ~/.bashrc
-echo 'alias 업데이트="~/Update.sh"' >> ~/.bashrc
-echo 'alias 사용법="~/Manual.sh"' >> ~/.bashrc
-echo 'alias 저장="~/Save.sh"' >> ~/.bashrc
-echo 'alias 예약="~/Reserve.sh"' >> ~/.bashrc
-
-# 변경된 환경 설정 적용
-source ~/.bashrc
-
-
-# 서버 시작 함수
-서버시작() {
-    ~/Start.sh
-}
-
-# 서버 종료 함수
-서버종료() {
-    ~/Stop.sh
-}
-
-# 서버 리부팅 함수
-서버리붓() {
-    ~/Restart.sh
-}
-
-# 업데이트 함수
-업데이트() {
-    ~/Update.sh
-}
-
-# 사용법 함수
-사용법() {
-    ~/Manual.sh
-}
-
-# 저장 함수
-저장() {
-    ~/Save.sh
-}
-
-# 예약 함수
-예약() {
-    ~/Reserve.sh
-}
+echo 'alias 서버시작="$USER_HOME/Start.sh"' >> ~/.bashrc
+echo 'alias 서버종료="$USER_HOME/Stop.sh"' >> ~/.bashrc
+echo 'alias 서버리붓="$USER_HOME/Restart.sh"' >> ~/.bashrc
+echo 'alias 업데이트="$USER_HOME/Update.sh"' >> ~/.bashrc
+echo 'alias 사용법="$USER_HOME/Manual.sh"' >> ~/.bashrc
+echo 'alias 저장="$USER_HOME/Save.sh"' >> ~/.bashrc
+echo 'alias 예약="$USER_HOME/Reserve.sh"' >> ~/.bashrc
 
 #새로고침
 source ~/.bashrc
-
+source ~/.bashrc
+source ~/.bashrc
+source ~/.bashrc
+source ~/.bashrc
 echo -e "\e[32m모든 작업을 완료하였습니다.\e[0m"
