@@ -20,15 +20,12 @@ if [ "$action" == "예약추가" ]; then
     echo "작업이 추가되었습니다."
 elif [ "$action" == "예약제거" ]; then
     #Crontab list
-    crontab -l
-
-    # 사용자로부터 cron 표현식 입력 받기
-    read -p "제거할 Cron 표현식을 입력하세요: " cron_expression
-
-    # 해당 cron 표현식을 crontab에서 제거
-    (crontab -l | grep -v "$cron_expression") | crontab -
+    crontab -r
 
     echo "작업이 제거되었습니다."
+
+elif [ "$action" == "취소" ]; then
+    exit 0 
 else
-    echo "올바른 명령을 입력하세요 (예약추가 또는 예약제거)."
+    echo "올바른 명령을 입력하세요 (예약추가 또는 예약제거 또는 취소)."
 fi
