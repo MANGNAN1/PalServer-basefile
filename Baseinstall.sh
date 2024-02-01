@@ -64,7 +64,7 @@ append_to_bashrc() {
 
     # 추가할 내용
     append_text="# 명령어 한글화
-echo -e "\e[32m명령어 한글화를 진행합니다.\e[0m"
+echo -e \"\\e[32m명령어 한글화를 진행합니다.\\e[0m\"
 alias 서버시작=\"~/Start.sh\"
 alias 서버종료=\"~/Stop.sh\"
 alias 서버리붓=\"~/Restart.sh\"
