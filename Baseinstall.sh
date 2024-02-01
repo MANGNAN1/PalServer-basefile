@@ -17,10 +17,10 @@ echo "완료."
 
 #윈도우sh -> 리눅스sh 변환
 echo "sh 파일 변환을 실행합니다."
-dos2unix /Start.sh
-dos2unix /Stop.sh
-dos2unix /Restart.sh
-dos2unix /Update.sh
+dos2unix ~/Start.sh
+dos2unix ~/Stop.sh
+dos2unix ~/Restart.sh
+dos2unix ~/Update.sh
 echo "완료."
 
 #명령어 한글화
