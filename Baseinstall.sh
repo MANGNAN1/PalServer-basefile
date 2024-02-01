@@ -55,7 +55,6 @@ echo -e "\e[32m완료.\e[0m"
 
 #명령어 한글화
 # .bashrc 파일에서 명령어 갱신
-
 update_bashrc() {
     # .bashrc 파일 경로
     bashrc_path="$HOME/.bashrc"
@@ -65,7 +64,6 @@ update_bashrc() {
 
     # 추가할 내용
     append_text="# 명령어 한글화
-echo -e \"\\e[32m명령어 한글화를 진행합니다.\\e[0m\"
 alias 서버시작=\"$USER_HOME/Start.sh\"
 alias 서버종료=\"$USER_HOME/Stop.sh\"
 alias 서버리붓=\"$USER_HOME/Restart.sh\"
@@ -82,17 +80,18 @@ alias 예약=\"$USER_HOME/Reserve.sh\"
 
     # 변경사항 즉시 적용
     source "$bashrc_path"
+    source ~/.bashrc
 }
 
 # 함수 실행
 update_bashrc
 
 #새로고침
-exec bash
 source ~/.bashrc
+
 echo -e "\e[32m모든 작업을 완료하였습니다.\e[0m"
 
-echo -e "\e[31m마지막으로 아래 코드를 복사해서 붙혀넣기하고 엔터를 눌러주세요.\e[0m"
-echo -e "\e[31msource ~/.bashrc\e[0m"
+#echo -e "\e[31m마지막으로 아래 코드를 복사해서 붙혀넣기하고 엔터를 눌러주세요.\e[0m"
+#echo -e "\e[31msource ~/.bashrc\e[0m"
 echo -e "\e[32m사용법을 입력하시면 사용가능한 명령어가 나옵니다.\e[0m"
 
