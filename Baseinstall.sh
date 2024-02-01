@@ -58,6 +58,7 @@ echo -e "\e[32m완료.\e[0m"
 #echo -e "\e[32m완료.\e[0m"
 
 # .bashrc 파일에 명령어 추가
+echo -e "\e[32m명령어 한글화를 진행합니다.\e[0m"
 append_to_bashrc() {
     # .bashrc 파일 경로
     bashrc_path="$HOME/.bashrc"
