@@ -10,16 +10,6 @@ USER_HOME="/home/$USERNAME"
 
 #Start.sh Stop.sh Restart.sh Update.sh Manual.sh 설치 
 
-#echo -e "\e[32m베이스 파일들을 설치합니다.\e[0m"
-#chmod +w ~
-#wget --no-clobber https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Start.sh
-#wget --no-clobber https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.sh
-#wget --no-clobber https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Stop.sh
-#wget --no-clobber https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Update.sh
-#wget --no-clobber https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
-#wget --no-clobber https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Save.sh
-#echo -e "\e[32m완료.\e[0m"
-
 echo -e "\e[32m베이스 파일들을 설치합니다.\e[0m"
 curl -o Start.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Start.sh
 curl -o Restart.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.sh
@@ -28,10 +18,11 @@ curl -o Update.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefi
 curl -o Manual.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Manual.sh
 curl -o Save.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Save.sh
 curl -o Reserve.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Reserve.sh
+curl -o Vminstall.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Vminstall.sh
 echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
-chmod +x $USER_HOME/Start.sh $USER_HOME/Stop.sh $USER_HOME/Restart.sh $USER_HOME/Update.sh $USER_HOME/Manual.sh $USER_HOME/Save.sh $USER_HOME/Reserve.sh
+chmod +x $USER_HOME/Start.sh $USER_HOME/Stop.sh $USER_HOME/Restart.sh $USER_HOME/Update.sh $USER_HOME/Manual.sh $USER_HOME/Save.sh $USER_HOME/Reserve.sh $USER_HOME/Vminstall.sh
 
 # dos2unix 설치 여부 확인
 if command -v dos2unix &> /dev/null; then
@@ -56,6 +47,7 @@ dos2unix $USER_HOME/Update.sh
 dos2unix $USER_HOME/Manual.sh
 dos2unix $USER_HOME/Save.sh
 dos2unix $USER_HOME/Reserve.sh
+dos2unix $USER_HOME/Vminstall.sh
 echo -e "\e[32m완료.\e[0m"
 
 #명령어 한글화
