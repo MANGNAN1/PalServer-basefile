@@ -68,7 +68,7 @@ alias 업데이트=\"$USER_HOME/Update.sh\"
 alias 사용법=\"$USER_HOME/Manual.sh\"
 alias 저장=\"$USER_HOME/Save.sh\"
 alias 예약=\"$USER_HOME/Reserve.sh\"
-alias 설치=\"$USER_HOME/Vminstall.sh\"
+alias 최초설치=\"$USER_HOME/Vminstall.sh\"
 # 완료.
 "
 
