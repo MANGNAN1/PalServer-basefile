@@ -88,7 +88,7 @@ update_bashrc
 source ~/.bashrc
 
 echo -e "\e[32m모든 작업을 완료하였습니다.\e[0m"
-
+echo -e " "
 echo -e "\e[31m마지막으로 아래 코드를 복사해서 붙혀넣기하고 엔터를 눌러주세요.\e[0m"
 echo -e "\e[31msource ~/.bashrc\e[0m"
 echo -e " "
