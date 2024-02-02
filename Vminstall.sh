@@ -39,6 +39,7 @@ echo -e "\e[32m설치완료.\e[0m"
 #Initial 실행 (최초 1회 실행)
 echo -e "\e[32m최초 1회 서버를 구동합니다.\e[0m"
 screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS"
+sleep 10
 echo -e "\e[32m구동완료.\e[0m"
 
 echo -e "\e[32m최초 1회 서버를 종료합니다.\e[0m"
