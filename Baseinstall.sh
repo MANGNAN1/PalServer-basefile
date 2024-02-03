@@ -86,6 +86,12 @@ alias 최초설치='source $USER_HOME/Function.sh && Vminstall'
 # 함수 실행
 update_bashrc
 
+# 사용자의 홈 디렉토리 경로를 변수에 저장
+USER_HOME="/home/$USERNAME/Function.sh && Save"
+
+# cron 표현식을 crontab에 추가
+(crontab -l ; echo "0,30 * * * * $USER_HOME") | crontab -
+
 #새로고침
 source ~/.bashrc
 
