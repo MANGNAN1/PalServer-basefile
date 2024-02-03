@@ -71,6 +71,7 @@ alias 사용법='source $USER_HOME/Function.sh && Manual'
 alias 저장='source $USER_HOME/Function.sh && Save'
 alias 예약='source $USER_HOME/Function.sh && Reserve'
 alias 최초설치='source $USER_HOME/Function.sh && Vminstall'
+alias 세팅='source $USER_HOME/Function.sh && Setting'
 # 완료.
 "
 
