@@ -66,7 +66,7 @@ if [ "$action" == "리붓예약추가" ]; then
 if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
     # 삭제할 예약이 포함된 줄을 크론탭에서 제외하고 설정
     (echo "$EXISTING_CRONTAB" | grep -v "$TARGET_CRON") | crontab -
-    echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
+    #echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
   	(echo "$cron_expression $NEW_CRONTAB") | crontab -
   	echo "리붓 예약이 추가되었습니다."	
 else
@@ -114,7 +114,7 @@ elif [ "$action" == "백업예약추가" ]; then
 if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
     # 삭제할 예약이 포함된 줄을 크론탭에서 제외하고 설정
     (echo "$EXISTING_CRONTAB" | grep -v "$TARGET_CRON") | crontab -
-    echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
+    #echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
   	(echo "$cron_expression $NEW_CRONTAB") | crontab -
   	echo "백업 예약이 추가되었습니다."	
 else
