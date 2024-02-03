@@ -58,15 +58,14 @@ update_bashrc() {
 
     # 추가할 내용
     append_text="# 명령어 한글화
-alias 서버시작=\"$USER_HOME/Baseinstall.sh 서버시작\"
-alias 서버종료=\"$USER_HOME/Baseinstall.sh 서버종료\"
-alias 서버리붓=\"$USER_HOME/Baseinstall.sh 서버리붓\"
-alias 업데이트=\"$USER_HOME/Baseinstall.sh 업데이트\"
-#alias 사용법=\"$USER_HOME/Baseinstall.sh 사용법\"
-alias 저장=\"$USER_HOME/Baseinstall.sh 저장\"
-alias 예약=\"$USER_HOME/Baseinstall.sh 예약\"
-alias 최초설치=\"$USER_HOME/Baseinstall.sh 최초설치\"
-alias 사용법=\"$USER_HOME/Baseinstall.sh && Baseinstall.sh Manual\"
+alias 서버시작='source $USER_HOME/Baseinstall.sh && Start'
+alias 서버종료='source $USER_HOME/Baseinstall.sh && Stop'
+alias 서버리붓='source $USER_HOME/Baseinstall.sh && Restart'
+alias 업데이트='source $USER_HOME/Baseinstall.sh && Update'
+alias 사용법='source $USER_HOME/Baseinstall.sh && Manual'
+alias 저장='source $USER_HOME/Baseinstall.sh && Save'
+alias 예약='source $USER_HOME/Baseinstall.sh && Reserve'
+alias 최초설치='source $USER_HOME/Baseinstall.sh && Vminstall'
 # 완료.
 "
 
@@ -245,41 +244,9 @@ Vminstall() {
 #새로고침
 source ~/.bashrc
 
-# 사용자 입력 확인
-case "$1" in
-  "사용법")
-    Manual
-    ;;
-  "예약")
-    Reserve
-    ;;
-  "서버리붓")
-    Restart
-    ;;
-  "저장")
-    Save
-    ;;
-  "서버시작")
-    Start
-    ;;
-  "서버종료")
-    Stop
-    ;;
-  "업데이트")
-    Update
-    ;;
-  "최초설치")
-    Vminstall
-    ;;
-  *)
-
-
 echo -e "\e[32m모든 작업을 완료하였습니다.\e[0m"
 echo -e " "
 echo -e "\e[31m마지막으로 아래 코드를 복사해서 붙혀넣기하고 엔터를 눌러주세요.\e[0m"
 echo -e "\e[31msource ~/.bashrc\e[0m"
 echo -e " "
 echo -e "\e[32m사용법을 입력하시면 사용가능한 명령어가 나옵니다.\e[0m"
-
-    ;;
-esac
