@@ -5,7 +5,7 @@ Manual() {
   echo -e "\e[96m║  \e[93m최초 설치                             ║\e[0m"
   echo -e "\e[96m║  \e[92m서버 시작                             ║\e[0m"
   echo -e "\e[96m║  \e[91m서버 종료                             ║\e[0m"
-  echo -e "\e[96m║  \e[93m서버 리붓                           ║\e[0m"
+  echo -e "\e[96m║  \e[93m서버 리붓                             ║\e[0m"
   echo -e "\e[96m║  \e[94m업데이트                              ║\e[0m"
   echo -e "\e[96m║  \e[95m예약                                  ║\e[0m"
   echo -e "\e[96m║  \e[97m세팅                                  ║\e[0m"
