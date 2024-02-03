@@ -22,7 +22,7 @@ if [ "$action" == "예약추가" ]; then
     USERNAME=$(whoami)
     
     # 사용자의 홈 디렉토리 경로를 변수에 저장
-    USER_HOME="/home/$USERNAME/Restart.sh"
+    USER_HOME="/home/$USERNAME/Function.sh && Restart"
     
     # 사용자로부터 cron 표현식 입력 받기
     read -p "Cron 표현식을 입력하세요 (예: 0 */12 * * *): " cron_expression
