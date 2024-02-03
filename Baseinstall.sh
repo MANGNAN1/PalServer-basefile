@@ -68,7 +68,7 @@ alias 예약=\"$USER_HOME/Baseinstall.sh 예약\"
 alias 최초설치=\"$USER_HOME/Baseinstall.sh 최초설치\"
 alias 사용법="$USER_HOME/Baseinstall.sh && Baseinstall.sh Manual"
 # 완료.
-"
+
 
     # 파일 끝에 내용 추가
     echo "$append_text" >> "$bashrc_path"
