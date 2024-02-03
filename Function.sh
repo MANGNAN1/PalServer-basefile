@@ -30,9 +30,15 @@ if [ "$action" == "리붓예약추가" ]; then
 
     # 사용자명을 동적으로 가져와 변수에 저장
     USERNAME=$(whoami)
-    
+
     # 사용자의 홈 디렉토리 경로를 변수에 저장
-    USER_HOME="/home/$USERNAME/Function.sh && Restart"
+    USER_HOME="/home/$USERNAME"
+    
+    # 존재하는 크론탭 내용을 가져와 변수에 저장
+    EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
+    
+    # 새로운 크론탭 예약을 추가할 표현식
+    NEW_CRONTAB="$USER_HOME/Function.sh && Restart"
 
     echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
     echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
@@ -53,10 +59,14 @@ if [ "$action" == "리붓예약추가" ]; then
     # 사용자로부터 cron 표현식 입력 받기
     read -p "Cron 표현식을 입력하세요 (EX: 0 */12 * * *): " cron_expression
 
-    # cron 표현식을 crontab에 추가
-    (crontab -l ; echo "$cron_expression $USER_HOME") | crontab -
-
-    echo "리붓 예약이 추가되었습니다."
+    # 기존 크론탭에 동일한 예약이 있는지 확인
+    if [[ -z "$EXISTING_CRONTAB" || "$EXISTING_CRONTAB" != *"$NEW_CRONTAB"* ]]; then
+        # 존재하지 않는 경우 또는 중복이 없는 경우에만 추가
+        (echo "$cron_expression $NEW_CRONTAB") | crontab -
+        echo "리붓 예약이 추가되었습니다."
+    else
+        echo "리붓 예약이 이미 존재합니다."
+    fi
 
 elif [ "$action" == "백업예약추가" ]; then
 
