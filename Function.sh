@@ -273,7 +273,6 @@ Setting() {
         nano ~/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
     else
         #echo "사용자가 n으로 응답함 - 작업을 취소합니다."
-        exit 1
+        return 1
     fi
-    }
 }
