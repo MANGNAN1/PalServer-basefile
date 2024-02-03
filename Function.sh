@@ -144,7 +144,7 @@ Restart() {
     echo -e "\e[32m서버를 리붓합니다.\e[0m"
     screen -S PalServerSession -X stuff $'\003'
     steamcmd +login anonymous +app_update 2394010 validate +quit
-    screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS"
+    screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS EpicApp=PalServer"
     echo -e "\e[32m리붓 완료.\e[0m"
 }
 
@@ -183,7 +183,7 @@ fi
 # 서버 시작 함수
 Start() {
     echo -e "\e[32m서버를 구동합니다.\e[0m"
-    screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS"
+    screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS EpicApp=PalServer"
     echo -e "\e[32m구동완료.\e[0m"
 }
 
