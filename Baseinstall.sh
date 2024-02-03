@@ -272,8 +272,7 @@ case "$1" in
     Vminstall
     ;;
   *)
-    ;;
-esac
+
 
 echo -e "\e[32m모든 작업을 완료하였습니다.\e[0m"
 echo -e " "
@@ -282,3 +281,5 @@ echo -e "\e[31msource ~/.bashrc\e[0m"
 echo -e " "
 echo -e "\e[32m사용법을 입력하시면 사용가능한 명령어가 나옵니다.\e[0m"
 
+    ;;
+esac
