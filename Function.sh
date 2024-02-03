@@ -38,7 +38,7 @@ if [ "$action" == "리붓예약추가" ]; then
     EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
 
     # 삭제할 크론탭 예약을 포함한 문자열
-    TARGET_CRON="$USER_HOME/Function.sh && Restart"
+    TARGET_CRON="Restart"
     
     # 새로운 크론탭 예약을 추가할 표현식
     NEW_CRONTAB="$USER_HOME/Function.sh && Restart"
@@ -86,7 +86,7 @@ elif [ "$action" == "백업예약추가" ]; then
     EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
 
     # 삭제할 크론탭 예약을 포함한 문자열
-    TARGET_CRON="$USER_HOME/Function.sh && Save"
+    TARGET_CRON="Save"
     
     # 새로운 크론탭 예약을 추가할 표현식
     NEW_CRONTAB="$USER_HOME/Function.sh && Save"
