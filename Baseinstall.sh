@@ -58,14 +58,14 @@ update_bashrc() {
 
     # 추가할 내용
     append_text="# 명령어 한글화
-alias 서버시작=\"$USER_HOME/Baseinstall.sh Start\"
-alias 서버종료=\"$USER_HOME/Baseinstall.sh Stop\"
-alias 서버리붓=\"$USER_HOME/Baseinstall.sh Restart\"
-alias 업데이트=\"$USER_HOME/Baseinstall.sh Update\"
-alias 사용법=\"$USER_HOME/Baseinstall.sh Manual\"
-alias 저장=\"$USER_HOME/Baseinstall.sh Save\"
-alias 예약=\"$USER_HOME/Baseinstall.sh Reserve\"
-alias 최초설치=\"$USER_HOME/Baseinstall.sh Vminstall\"
+alias 서버시작=\"$USER_HOME/Baseinstall.sh 서버시작\"
+alias 서버종료=\"$USER_HOME/Baseinstall.sh 서버종료\"
+alias 서버리붓=\"$USER_HOME/Baseinstall.sh 서버리붓\"
+alias 업데이트=\"$USER_HOME/Baseinstall.sh 업데이트\"
+alias 사용법=\"$USER_HOME/Baseinstall.sh 사용법\"
+alias 저장=\"$USER_HOME/Baseinstall.sh 저장\"
+alias 예약=\"$USER_HOME/Baseinstall.sh 예약\"
+alias 최초설치=\"$USER_HOME/Baseinstall.sh 최초설치\"
 # 완료.
 "
 
