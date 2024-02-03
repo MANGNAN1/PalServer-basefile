@@ -66,6 +66,7 @@ update_bashrc() {
 alias 서버시작='source $USER_HOME/Function.sh && Start'
 alias 서버종료='source $USER_HOME/Function.sh && Stop'
 alias 서버리붓='source $USER_HOME/Function.sh && Restart'
+alias 서버확인='source $USER_HOME/Function.sh && Servercheck'
 alias 업데이트='source $USER_HOME/Function.sh && Update'
 alias 사용법='source $USER_HOME/Function.sh && Manual'
 alias 저장='source $USER_HOME/Function.sh && Save'
