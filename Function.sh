@@ -105,10 +105,10 @@ elif [ "$action" == "백업예약추가" ]; then
     echo -e "\e[96m║ \e[92mEX) 0 */8 * * * = 00시 기준 8시간마다 저장 00시 8시 16시  ║\e[0m"  
     echo -e "\e[96m║ \e[92mEX) 0 * * * * = 매시 0분 마다 저장                        ║\e[0m"   
     echo -e "\e[96m║ \e[92mEX) 0,30 * * * * = 매시 0분, 30분 마다 저장               ║\e[0m"      
-    echo -e "\e[96m╚═══════════════════════════════════════════════════════════╝\e[0m"    
+    echo -e "\e[96m╚═══════════════════════════════════════════════════════════╝\e[0m" 
     
     # 사용자로부터 cron 표현식 입력 받기
-    read -p "Cron 표현식을 입력하세요 (EX: 0 */12 * * *): " cron_expression
+    read -p "Cron 표현식을 입력하세요 (EX: 0,30 * * * *): " cron_expression
 
 # 기존 크론탭에 삭제할 예약이 있는지 확인
 if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
@@ -120,6 +120,20 @@ if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
 else
   	(echo "$cron_expression $NEW_CRONTAB") | crontab -
   	echo "백업 예약이 추가되었습니다."
+fi
+    
+elif [ "$action" == "예약제거" ]; then
+    #Crontab list
+    crontab -r
+    echo "작업이 제거되었습니다."
+
+elif [ "$action" == "리스트" ]; then
+    crontab -l
+
+elif [ "$action" == "취소"||"c" ]; then
+    exit 0 
+else
+    echo "올바른 명령을 입력하세요."
 fi
 }
 
