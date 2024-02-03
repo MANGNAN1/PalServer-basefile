@@ -248,3 +248,32 @@ Vminstall() {
     screen -S PalServerSession -X stuff $'\003'
     echo -e "\e[32m종료 완료.\e[0m"
 }
+
+# 세팅 함수
+Setting() {
+    echo -e "\e[32m세팅 편집기로 진입하기 전 설명드립니다.\e[0m"
+    echo -e "\e[32m세팅 변경을 원하시면 서버가 OFf 상태여야 합니다.\e[0m"    
+    echo -e "\e[32m원하시는 옵션을 변경하신 후 컨트롤 + x 로 저장을 하신 후 Y 엔터 눌러서 편집기에서 빠져나오시면 됩니다. \e[0m"    
+
+    # 사용자에게 y 또는 n으로 답변을 받는 함수
+    ask_yes_no() {
+        while true; do
+            read -p "$1 (y/n): " answer
+            case $answer in
+                [Yy]* ) return 0;;  # 사용자가 y로 응답
+                [Nn]* ) return 1;;  # 사용자가 n으로 응답
+                * ) echo "y 또는 n으로 답하세요.";;
+            esac
+        done
+    }
+    
+    # 사용자에게 y 또는 n으로 묻기
+    if ask_yes_no "작업을 진행하시겠습니까?"; then
+        #echo "사용자가 y로 응답함 - 작업을 진행합니다."
+        nano ~/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
+    else
+        #echo "사용자가 n으로 응답함 - 작업을 취소합니다."
+        exit 1
+    fi
+    }
+}
