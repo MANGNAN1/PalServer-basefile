@@ -36,6 +36,9 @@ if [ "$action" == "리붓예약추가" ]; then
     
     # 존재하는 크론탭 내용을 가져와 변수에 저장
     EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
+
+    # 삭제할 크론탭 예약을 포함한 문자열
+    TARGET_CRON="$USER_HOME/Function.sh && Restart"
     
     # 새로운 크론탭 예약을 추가할 표현식
     NEW_CRONTAB="$USER_HOME/Function.sh && Restart"
@@ -59,14 +62,17 @@ if [ "$action" == "리붓예약추가" ]; then
     # 사용자로부터 cron 표현식 입력 받기
     read -p "Cron 표현식을 입력하세요 (EX: 0 */12 * * *): " cron_expression
 
-    # 기존 크론탭에 동일한 예약이 있는지 확인
-    if [[ -z "$EXISTING_CRONTAB" || "$EXISTING_CRONTAB" != *"$NEW_CRONTAB"* ]]; then
-        # 존재하지 않는 경우 또는 중복이 없는 경우에만 추가
-        (echo "$cron_expression $NEW_CRONTAB") | crontab -
-        echo "리붓 예약이 추가되었습니다."
-    else
-        echo "리붓 예약이 이미 존재합니다."
-    fi
+# 기존 크론탭에 삭제할 예약이 있는지 확인
+if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
+    # 삭제할 예약이 포함된 줄을 크론탭에서 제외하고 설정
+    (echo "$EXISTING_CRONTAB" | grep -v "$TARGET_CRON") | crontab -
+    echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
+  	(echo "$cron_expression $NEW_CRONTAB") | crontab -
+  	echo "리붓 예약이 추가되었습니다."	
+else
+  	(echo "$cron_expression $NEW_CRONTAB") | crontab -
+  	echo "리붓 예약이 추가되었습니다."
+fi
 
 elif [ "$action" == "백업예약추가" ]; then
 
