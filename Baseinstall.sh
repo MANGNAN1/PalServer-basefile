@@ -58,14 +58,14 @@ update_bashrc() {
 
     # 추가할 내용
     append_text="# 명령어 한글화
-alias 서버시작=\"$USER_HOME/Baseinatll.sh Start\"
-alias 서버종료=\"$USER_HOME/Baseinatll.sh Stop\"
-alias 서버리붓=\"$USER_HOME/Baseinatll.sh Restart\"
-alias 업데이트=\"$USER_HOME/Baseinatll.sh Update\"
-alias 사용법=\"$USER_HOME/Baseinatll.sh Manual\"
-alias 저장=\"$USER_HOME/Baseinatll.sh Save\"
-alias 예약=\"$USER_HOME/Baseinatll.sh Reserve\"
-alias 최초설치=\"$USER_HOME/Baseinatll.sh Vminstall\"
+alias 서버시작=\"$USER_HOME/Baseinstall.sh Start\"
+alias 서버종료=\"$USER_HOME/Baseinstall.sh Stop\"
+alias 서버리붓=\"$USER_HOME/Baseinstall.sh Restart\"
+alias 업데이트=\"$USER_HOME/Baseinstall.sh Update\"
+alias 사용법=\"$USER_HOME/Baseinstall.sh Manual\"
+alias 저장=\"$USER_HOME/Baseinstall.sh Save\"
+alias 예약=\"$USER_HOME/Baseinstall.sh Reserve\"
+alias 최초설치=\"$USER_HOME/Baseinstall.sh Vminstall\"
 # 완료.
 "
 
