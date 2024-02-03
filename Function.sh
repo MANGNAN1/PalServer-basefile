@@ -16,8 +16,9 @@ Reserve() {
 
 #예약 설명서 에코
     echo -e "\e[96m╔════════════════════════════════════════╗\e[0m"
-    echo -e "\e[96m║  자동리붓 예약을 추가하려면 '예약추가' ║\e[0m"
-    echo -e "\e[96m║  제거하려면 '예약제거'                 ║\e[0m"
+    echo -e "\e[96m║  자동백업 예약을 추가하려면 '백업예약추가' ║\e[0m"    
+    echo -e "\e[96m║  자동리붓 예약을 추가하려면 '리붓예약추가' ║\e[0m"
+    echo -e "\e[96m║  모든 예약을 제거하려면 '예약제거'           ║\e[0m"
     echo -e "\e[96m║  리스트를 보시려면 '리스트'            ║\e[0m"
     echo -e "\e[96m║  취소하려면 '취소'                     ║\e[0m"
     echo -e "\e[96m╚════════════════════════════════════════╝\e[0m"
@@ -25,24 +26,39 @@ Reserve() {
 # 사용자로부터 입력 받기
 read -p "명령어를 입력하세요: " action
 
-if [ "$action" == "예약추가" ]; then
+if [ "$action" == "리붓예약추가" ]; then
 
     # 사용자명을 동적으로 가져와 변수에 저장
     USERNAME=$(whoami)
     
     # 사용자의 홈 디렉토리 경로를 변수에 저장
     USER_HOME="/home/$USERNAME/Function.sh && Restart"
+
+    echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
+    echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
+    echo -e "\e[96m║                                                           ║\e[0m"
+    echo -e "\e[96m║ \e[92m┌───────────────────── 분 (0 - 59)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ ┌─────────────────── 시 (0 - 23)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ ┌───────────────── 일 (1 - 31)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ ┌─────────────── 월 (1 - 12)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ │ ┌───────────── 요일 (0 - 6)                       ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ │ │                                                 ║\e[0m"
+    echo -e "\e[96m║ \e[92m* * * * * │                                               ║\e[0m"
+    echo -e "\e[96m║ \e[92mEX) 0 */12 * * * = 00시 기준 12시간마다 저장 00시 12시    ║\e[0m"    
+    echo -e "\e[96m║ \e[92mEX) 0 */8 * * * = 00시 기준 8시간마다 저장 00시 8시 16시  ║\e[0m"  
+    echo -e "\e[96m║ \e[92mEX) 0 * * * * = 매시 0분 마다 저장                        ║\e[0m"   
+    echo -e "\e[96m║ \e[92mEX) 0,30 * * * * = 매시 0분, 30분 마다 저장               ║\e[0m"      
+    echo -e "\e[96m╚═══════════════════════════════════════════════════════════╝\e[0m"    
     
     # 사용자로부터 cron 표현식 입력 받기
-    read -p "Cron 표현식을 입력하세요 (예: 0 */12 * * *): " cron_expression
+    read -p "Cron 표현식을 입력하세요 (EX: 0 */12 * * *): " cron_expression
 
     # cron 표현식을 crontab에 추가
     (crontab -l ; echo "$cron_expression $USER_HOME") | crontab -
 
-    echo "작업이 추가되었습니다."
-elif [ "$action" == "예약제거" ]; then
-    #Crontab list
-    crontab -r
+    echo "리붓 예약이 추가되었습니다."
+
+elif [ "$action" == "백업예약추가" ]; then
 
     # 사용자명을 동적으로 가져와 변수에 저장
     USERNAME=$(whoami)
@@ -50,9 +66,33 @@ elif [ "$action" == "예약제거" ]; then
     # 사용자의 홈 디렉토리 경로를 변수에 저장
     USER_HOME="/home/$USERNAME/Function.sh && Save"
 
-    # cron 표현식을 crontab에 추가
-    (crontab -l ; echo "0,30 * * * * $USER_HOME") | crontab -
+    echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
+    echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
+    echo -e "\e[96m║                                                           ║\e[0m"
+    echo -e "\e[96m║ \e[92m┌───────────────────── 분 (0 - 59)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ ┌─────────────────── 시 (0 - 23)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ ┌───────────────── 일 (1 - 31)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ ┌─────────────── 월 (1 - 12)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ │ ┌───────────── 요일 (0 - 6)                       ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ │ │                                                 ║\e[0m"
+    echo -e "\e[96m║ \e[92m* * * * * │                                               ║\e[0m"
+    echo -e "\e[96m║ \e[92mEX) 0 */12 * * * = 00시 기준 12시간마다 저장 00시 12시    ║\e[0m"    
+    echo -e "\e[96m║ \e[92mEX) 0 */8 * * * = 00시 기준 8시간마다 저장 00시 8시 16시  ║\e[0m"  
+    echo -e "\e[96m║ \e[92mEX) 0 * * * * = 매시 0분 마다 저장                        ║\e[0m"   
+    echo -e "\e[96m║ \e[92mEX) 0,30 * * * * = 매시 0분, 30분 마다 저장               ║\e[0m"      
+    echo -e "\e[96m╚═══════════════════════════════════════════════════════════╝\e[0m" 
+    
+    # 사용자로부터 cron 표현식 입력 받기
+    read -p "Cron 표현식을 입력하세요 (EX: 0,30 * * * *): " cron_expression
 
+    # cron 표현식을 crontab에 추가
+    (crontab -l ; echo "$cron_expression $USER_HOME") | crontab -
+
+    echo "백업 예약이 추가되었습니다."
+    
+elif [ "$action" == "예약제거" ]; then
+    #Crontab list
+    crontab -r
     echo "작업이 제거되었습니다."
 
 elif [ "$action" == "리스트" ]; then
