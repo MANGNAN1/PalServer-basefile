@@ -251,9 +251,18 @@ Vminstall() {
 
 # 세팅 함수
 Setting() {
-    echo -e "\e[32m세팅 편집기로 진입하기 전 설명드립니다.\e[0m"
-    echo -e "\e[32m세팅 변경을 원하시면 서버가 OFf 상태여야 합니다.\e[0m"    
-    echo -e "\e[32m원하시는 옵션을 변경하신 후 컨트롤 + x 로 저장을 하신 후 Y 엔터 눌러서 편집기에서 빠져나오시면 됩니다. \e[0m"    
+    # 색상 및 스타일 정의
+    BOLD_GREEN="\e[1;32m"
+    BOLD_YELLOW="\e[1;33m"
+    RESET="\e[0m"
+
+    # 에코 문구 출력
+    echo -e "${BOLD_GREEN}╔════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${BOLD_GREEN}║ 세팅 편집기로 진입하기 전 설명드립니다.                ║${RESET}"
+    echo -e "${BOLD_GREEN}║ 세팅 변경을 하시기 전에는 서버가 ${BOLD_YELLOW}OFF${BOLD_GREEN} 상태여야 합니다.  ║${RESET}"    
+    echo -e "${BOLD_GREEN}║ 원하시는 옵션을 변경하신 후 ${BOLD_YELLOW}Ctrl + X${BOLD_GREEN} 로 저장을 하신 후 ║${RESET}"    
+    echo -e "${BOLD_GREEN}║ ${BOLD_YELLOW}Y 엔터${BOLD_GREEN} 눌러서 편집기에서 빠져나오시면 됩니다.          ║${RESET}"    
+    echo -e "${BOLD_GREEN}╚════════════════════════════════════════════════════════╝${RESET}"    
 
     # 사용자에게 y 또는 n으로 답변을 받는 함수
     ask_yes_no() {
@@ -266,13 +275,12 @@ Setting() {
             esac
         done
     }
-    
+
     # 사용자에게 y 또는 n으로 묻기
-    if ask_yes_no "작업을 진행하시겠습니까?"; then
-        #echo "사용자가 y로 응답함 - 작업을 진행합니다."
+    if ask_yes_no "${BOLD_GREEN}작업을 진행하시겠습니까?${RESET}"; then
         nano ~/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
     else
-        #echo "사용자가 n으로 응답함 - 작업을 취소합니다."
         return 1
     fi
 }
+
