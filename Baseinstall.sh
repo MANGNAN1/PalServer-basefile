@@ -86,11 +86,20 @@ alias 최초설치='source $USER_HOME/Function.sh && Vminstall'
 # 함수 실행
 update_bashrc
 
-# 사용자의 홈 디렉토리 경로를 변수에 저장
-USER_HOME="/home/$USERNAME/Function.sh && Save"
+# 존재하는 크론탭 내용을 가져와 변수에 저장
+EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
 
-# cron 표현식을 crontab에 추가
-(crontab -l ; echo "0,30 * * * * $USER_HOME") | crontab -
+# 새로운 크론탭 예약을 추가할 표현식
+NEW_CRONTAB="0,30 * * * * $USER_HOME/Function.sh && Save"
+
+# 기존 크론탭에 동일한 예약이 있는지 확인
+if [[ -z "$EXISTING_CRONTAB" || "$EXISTING_CRONTAB" != *"$NEW_CRONTAB"* ]]; then
+    # 존재하지 않는 경우 또는 중복이 없는 경우에만 추가
+    (echo "$EXISTING_CRONTAB"; echo "$NEW_CRONTAB") | crontab -
+    echo "기본 30분단위 자동백업 예약이 추가되었습니다."
+else
+    echo "Pass"
+fi
 
 #새로고침
 source ~/.bashrc
