@@ -295,3 +295,12 @@ Setting() {
     fi
 }
 
+# 서버 구동 확인
+Servercheck() {
+# PalServer.sh 프로세스가 실행 중인지 확인
+if pgrep -f "PalServer.sh" > /dev/null; then
+    echo "서버가 구동중입니다."
+else
+    echo "서버가 구동중이지 않습니다."
+fi
+}
