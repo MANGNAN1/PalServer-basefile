@@ -42,7 +42,7 @@ if [ "$action" == "리붓예약추가" ]; then
     TARGET_CRON="Restart"
     
     # 새로운 크론탭 예약을 추가할 표현식
-    NEW_CRONTAB="$USER_HOME/Restart.sh"
+    NEW_CRONTAB="$USER_HOME/Restart.sh >> $USER_HOME/logfile.log 2>&1"
 
     echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
     echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
@@ -91,7 +91,7 @@ elif [ "$action" == "백업예약추가" ]; then
     TARGET_CRON="Save"
     
     # 새로운 크론탭 예약을 추가할 표현식
-    NEW_CRONTAB="$USER_HOME/Save.sh"
+    NEW_CRONTAB="$USER_HOME/Save.sh >> $USER_HOME/logfile.log 2>&1"
 
     echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
     echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
