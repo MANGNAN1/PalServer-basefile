@@ -4,7 +4,7 @@ https://cloud.google.com/shell?_ga=2.70368912.-1479844828.1707022139&hl=ko
 
 Cloud Shell 터미널에 입력
 
-# VM인스턴스 생성
+##### VM인스턴스 생성
 gcloud compute instances create palworld \
     --zone=asia-northeast3-a \
     --machine-type=n2-highmem-4 \
@@ -12,7 +12,7 @@ gcloud compute instances create palworld \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=15GB
 
-# 기존 방화벽 규칙이 존재하는지 확인
+##### 기존 방화벽 규칙이 존재하는지 확인
 FIREWALL_RULE="palworld"
 
 EXISTING_RULE=$(gcloud compute firewall-rules describe $FIREWALL_RULE --format="value(name)" --project=<YOUR_PROJECT_ID> 2>/dev/null)
@@ -22,7 +22,7 @@ if [ -n "$EXISTING_RULE" ]; then
     gcloud compute firewall-rules delete $FIREWALL_RULE --quiet --project=<YOUR_PROJECT_ID>
 fi
 
-# 새로운 방화벽 규칙 추가
+##### 새로운 방화벽 규칙 추가
 gcloud compute firewall-rules create $FIREWALL_RULE \
     --network=default \
     --direction=INGRESS \
