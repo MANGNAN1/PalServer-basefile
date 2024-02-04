@@ -26,25 +26,6 @@ curl -o Save.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile
 #curl -o Reserve.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Reserve.sh
 #curl -o Vminstall.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Vminstall.sh
 
-# make 패키지 설치
-sudo apt-get update
-sudo apt-get install make
-# gcc 패키지 설치
-sudo apt-get install gcc -y
-
-# MCRCON 디렉토리가 /home/b99qlrnrn/ 디렉토리에 존재하면 패스
-if [ -d "$USER_HOME/mcrcon" ]; then
-  echo "MCRCON 디렉토리가 이미 존재합니다. 다운로드 및 설치를 패스합니다."
-else
-  # MCRCON 다운로드 및 설치
-  git clone https://github.com/Tiiffi/mcrcon.git
-  cd mcrcon
-  make
-  sudo make install
-  cd
-  echo "MCRCON을 다운로드하고 홈 디렉토리에 설치했습니다."
-fi
-
 # ARRCON 파일이 /home/b99qlrnrn/ 디렉토리에 존재하면 패스
 if [ -e "$USER_HOME/ARRCON" ]; then
   echo "ARRCON 파일이 이미 존재합니다. 다운로드 및 설치를 패스합니다."
@@ -128,6 +109,9 @@ update_bashrc
 source ~/.bashrc
 
 sudo timedatectl set-timezone Asia/Seoul
+
+sleep 3
+clear
 
 echo -e "\e[32m패키지 다운로드를 완료하였습니다.\e[0m"
 echo -e " "
