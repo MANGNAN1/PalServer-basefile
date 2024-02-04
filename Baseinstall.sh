@@ -22,11 +22,15 @@ curl -o Restart.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basef
 curl -o Save.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Save.sh
 #curl -o Reserve.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Reserve.sh
 #curl -o Vminstall.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Vminstall.sh
+wget https://github.com/radj307/ARRCON/releases/download/3.3.7/ARRCON-3.3.7-Linux.zip -O ~/arrcon.zip
+unzip ~/arrcon.zip -d ~  # 홈 디렉토리에 압축 해제
+rm ~/arrcon.zip
+echo "ARRCON을 다운로드하고 홈 디렉토리에 압축 해제했습니다."
 echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
 #chmod +x $USER_HOME/Start.sh $USER_HOME/Stop.sh $USER_HOME/Restart.sh $USER_HOME/Update.sh $USER_HOME/Manual.sh $USER_HOME/Save.sh $USER_HOME/Reserve.sh $USER_HOME/Vminstall.sh
-chmod +x $USER_HOME/Function.sh $USER_HOME/Restart.sh $USER_HOME/Save.sh
+chmod +x $USER_HOME/Function.sh $USER_HOME/Restart.sh $USER_HOME/Save.sh $HOME/ARRCON
 
 # dos2unix 설치 여부 확인
 if command -v dos2unix &> /dev/null; then
