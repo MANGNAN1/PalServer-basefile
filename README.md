@@ -29,9 +29,7 @@ gcloud compute firewall-rules create $FIREWALL_RULE \
     --action=ALLOW \
     --priority=1000 \
     --rules=tcp:27015,tcp:27016,tcp:25575,udp:27015,udp:27016,udp:25575,udp:8211 \
-    --source-ranges=0.0.0.0/0 \
-    --project=<YOUR_PROJECT_ID>
-  
+    --source-ranges=0.0.0.0/0
 
 -------------------------------------------------------------------------------------------------------------------
 
