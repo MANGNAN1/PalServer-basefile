@@ -159,7 +159,7 @@ if [ ! -d "$SAVE_DIR" ]; then
 fi
 
 # 현재 날짜와 시간으로 저장 파일명 설정 (월일시간분)
-SAVE_NAME="save_$(date +%m%d%H%M).tar.gz"
+SAVE_NAME="$(date +%m%d%H%M).tar.gz"
 SAVE_PATH="$SAVE_DIR/$SAVE_NAME"
 FOLDER_PATH="$HOME/Steam/steamapps/common/PalServer/Pal/Saved"
 
