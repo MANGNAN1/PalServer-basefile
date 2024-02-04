@@ -373,3 +373,21 @@ else
     echo "해당 날짜의 복구 데이터를 찾을 수 없습니다. 복구을 종료합니다."
 fi
 }
+
+# 기능 테스트 함수
+Test() {
+    USERNAME=$(whoami)
+
+    local ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+    # Admin 패스워드 값 추출
+    local admin_password=$(awk '/OptionSettings=/ {match($0, /AdminPassword="([^"]*)"/, arr); print arr[1]}' "$ini_file")
+    
+    # RCONPort 값 추출
+    local rcon_port=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
+
+    # 추출된 값 출력
+    print_message "AdminPassword: $admin_password"
+    print_message "RCONPort: $rcon_port"
+
+    echo '공지사항 테스트 테스트 테스트 밤톨 죽어' | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD
+}
