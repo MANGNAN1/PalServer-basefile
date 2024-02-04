@@ -12,17 +12,17 @@ gcloud compute instances create palworld \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=15GB
 
-##### 기존 방화벽 규칙이 존재하는지 확인
+##### 기존 방화벽 규칙이 존재하는지 확인 후
+##### 새로운 방화벽 규칙 추가
 FIREWALL_RULE="palworld"
 
 EXISTING_RULE=$(gcloud compute firewall-rules describe $FIREWALL_RULE --format="value(name)" --project=<YOUR_PROJECT_ID> 2>/dev/null)
 
 if [ -n "$EXISTING_RULE" ]; then
-    # 기존 규칙이 있으면 삭제
+
     gcloud compute firewall-rules delete $FIREWALL_RULE --quiet --project=<YOUR_PROJECT_ID>
 fi
 
-##### 새로운 방화벽 규칙 추가
 gcloud compute firewall-rules create $FIREWALL_RULE \
     --network=default \
     --direction=INGRESS \
