@@ -92,6 +92,8 @@ update_bashrc
 #새로고침
 source ~/.bashrc
 
+sudo timedatectl set-timezone Asia/Seoul
+
 clear
 
 echo -e "\e[32m패키지 다운로드를 완료하였습니다.\e[0m"
