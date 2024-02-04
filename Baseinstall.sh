@@ -30,7 +30,7 @@ curl -o Save.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile
 sudo apt-get update
 sudo apt-get install make
 # gcc 패키지 설치
-sudo apt-get install gcc
+sudo apt-get install gcc -y
 
 # MCRCON 파일이 /home/b99qlrnrn/ 디렉토리에 존재하면 패스
 if [ -e "$USER_HOME/MCRCON" ]; then
