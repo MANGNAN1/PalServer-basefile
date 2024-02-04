@@ -153,7 +153,7 @@ Restart() {
 # 파일 저장 함수
 Save() {
 SAVE_DIR="$HOME/backup/saved"
-DAYS_TO_KEEP=5
+DAYS_TO_KEEP=3
 
 if [ ! -d "$SAVE_DIR" ]; then
     mkdir -p "$SAVE_DIR" || { echo -e "\e[91m디렉터리 생성 실패: $SAVE_DIR\e[0m"; exit 1; }
