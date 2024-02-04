@@ -110,7 +110,6 @@ alias 세팅='source $USER_HOME/Function.sh && Setting'
 alias 서버복구='source $USER_HOME/Function.sh && Restore'
 alias 공지='source $USER_HOME/Function.sh && Broadcast'
 alias admin='source $USER_HOME/Function.sh && Admin'
-alias test='source $USER_HOME/Function.sh && Test'
 # 완료.
 "
 
@@ -120,7 +119,6 @@ alias test='source $USER_HOME/Function.sh && Test'
 
     # 변경사항 즉시 적용
     source "$bashrc_path"
-    source ~/.bashrc
 }
 
 # 함수 실행
