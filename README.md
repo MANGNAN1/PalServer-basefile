@@ -1,6 +1,5 @@
-#####VM인스턴스 자동 생성 및 방화벽 포트 자동 추가
-
-#####Cloud Shell 콘솔 링크
+##### VM인스턴스 자동 생성 및 방화벽 포트 자동 추가
+##### Cloud Shell 콘솔 링크
 https://cloud.google.com/shell?_ga=2.70368912.-1479844828.1707022139&hl=ko
 
 Cloud Shell 콘솔에 입력
