@@ -386,8 +386,8 @@ Test() {
     local rcon_port=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
 
     # 추출된 값 출력
-    print_message "AdminPassword: $admin_password"
-    print_message "RCONPort: $rcon_port"
+    echo "AdminPassword: $admin_password"
+    echo "RCONPort: $rcon_port"
 
     echo '공지사항 테스트 테스트 테스트 밤톨 죽어' | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD
 }
