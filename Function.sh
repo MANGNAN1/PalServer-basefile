@@ -389,5 +389,5 @@ Test() {
     echo "AdminPassword: $admin_password"
     echo "RCONPort: $rcon_port"
 
-    echo '공지사항 테스트 테스트 테스트 밤톨 죽어' | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD
+    echo 'broadcast Bamtol die please' | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD
 }
