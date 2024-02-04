@@ -376,6 +376,8 @@ fi
 
 # 기능 테스트 함수
 Test() {
+    local user_message=$1  # 함수에 전달된 첫 번째 인자를 변수로 사용
+
     USERNAME=$(whoami)
 
     ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
@@ -386,8 +388,9 @@ Test() {
     RCON_PORT=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
 
     # 추출된 값 출력
-    echo "AdminPassword: $ADMIN_PASSWORD"
-    echo "RCONPort: $RCON_PORT"
+    #echo "AdminPassword: $ADMIN_PASSWORD"
+    #echo "RCONPort: $RCON_PORT"
 
-    echo 'broadcast Bamtol_die_please' | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD
+    # 사용자가 입력한 메시지를 'ARRCON'에 전달하여 실행
+    echo "$user_message" | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD
 }
