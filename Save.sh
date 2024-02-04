@@ -12,13 +12,10 @@ SAVE_PATH="$SAVE_DIR/$SAVE_NAME"
 FOLDER_PATH="$HOME/Steam/steamapps/common/PalServer/Pal/Saved"
 
 # 폴더 압축과 에러 로그 기록
-tar -czf "$SAVE_PATH" "$FOLDER_PATH" > /dev/null 2> "$HOME/backup/error.log"
+tar -czf "$SAVE_PATH" "$FOLDER_PATH"
 
 if [ $? -eq 0 ]; then
     echo -e "\e[32m저장이 완료되었습니다: $SAVE_PATH\e[0m"
-
-    # 저장 파일 이름을 로그에 기록
-    echo "$SAVE_NAME" >> "$HOME/backup/save_list.log"
 
     # 저장 폴더와 하위 폴더에 모든 권한 부여
     chmod -R 777 "$SAVE_DIR" || { echo -e "\e[91m권한 변경 실패: $SAVE_DIR\e[0m"; exit 1; }
