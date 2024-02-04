@@ -3,7 +3,7 @@
 https://cloud.google.com/shell?_ga=2.70368912.-1479844828.1707022139&hl=ko
 
 #### Cloud Shell 콘솔에 입력
-
+```
 #VM인스턴스 생성
 
 gcloud compute instances create palworld \
@@ -32,7 +32,7 @@ gcloud compute firewall-rules create $FIREWALL_RULE \
     --priority=1000 \
     --rules=tcp:27015,tcp:27016,tcp:25575,udp:27015,udp:27016,udp:25575,udp:8211 \
     --source-ranges=0.0.0.0/0
-
+```
 -------------------------------------------------------------------------------------------------------------------
 
 서버관리 패키지
