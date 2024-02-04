@@ -1,8 +1,7 @@
 #!/bin/bash
+clear
 # 사용자의 홈 디렉토리로 이동합니다.
 cd "$HOME" || exit
-
-clear
 
 # 사용자명을 동적으로 가져와 변수에 저장
 USERNAME=$(whoami)
@@ -129,8 +128,6 @@ update_bashrc
 source ~/.bashrc
 
 sudo timedatectl set-timezone Asia/Seoul
-
-clear
 
 echo -e "\e[32m패키지 다운로드를 완료하였습니다.\e[0m"
 echo -e " "
