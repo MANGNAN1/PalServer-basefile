@@ -13,6 +13,10 @@ USER_HOME="/home/$USERNAME"
 #Start.sh Stop.sh Restart.sh Update.sh Manual.sh 설치 
 
 echo -e "\e[32m베이스 파일들을 설치합니다.\e[0m"
+
+#unzip 패키지 설치
+sudo apt-get install unzip -y
+
 curl -o Function.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Function.sh
 #curl -o Start.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Start.sh
 curl -o Restart.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Restart.sh
