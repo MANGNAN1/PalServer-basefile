@@ -32,9 +32,9 @@ sudo apt-get install make
 # gcc 패키지 설치
 sudo apt-get install gcc -y
 
-# MCRCON 파일이 /home/b99qlrnrn/ 디렉토리에 존재하면 패스
-if [ -e "$USER_HOME/MCRCON" ]; then
-  echo "MCRCON 파일이 이미 존재합니다. 다운로드 및 설치를 패스합니다."
+# MCRCON 디렉토리가 /home/b99qlrnrn/ 디렉토리에 존재하면 패스
+if [ -d "$USER_HOME/mcrcon" ]; then
+  echo "MCRCON 디렉토리가 이미 존재합니다. 다운로드 및 설치를 패스합니다."
 else
   # MCRCON 다운로드 및 설치
   git clone https://github.com/Tiiffi/mcrcon.git
@@ -42,7 +42,7 @@ else
   make
   sudo make install
   cd
-  echo "MCRCON을 다운로드하고 홈 디렉토리에 압축 해제했습니다."
+  echo "MCRCON을 다운로드하고 홈 디렉토리에 설치했습니다."
 fi
 
 # ARRCON 파일이 /home/b99qlrnrn/ 디렉토리에 존재하면 패스
@@ -60,7 +60,7 @@ echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
 #chmod +x $USER_HOME/Start.sh $USER_HOME/Stop.sh $USER_HOME/Restart.sh $USER_HOME/Update.sh $USER_HOME/Manual.sh $USER_HOME/Save.sh $USER_HOME/Reserve.sh $USER_HOME/Vminstall.sh
-chmod +x $USER_HOME/Function.sh $USER_HOME/Restart.sh $USER_HOME/Save.sh $HOME/ARRCON
+chmod +x $USER_HOME/Function.sh $USER_HOME/Restart.sh $USER_HOME/Save.sh $HOME/ARRCON $HOME/mcrcon/mcrcon
 
 # dos2unix 설치 여부 확인
 if command -v dos2unix &> /dev/null; then
