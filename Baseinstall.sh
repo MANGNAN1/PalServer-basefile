@@ -90,7 +90,8 @@ alias 예약='source $USER_HOME/Function.sh && Reserve'
 alias 최초설치='source $USER_HOME/Function.sh && Vminstall'
 alias 세팅='source $USER_HOME/Function.sh && Setting'
 alias 서버복구='source $USER_HOME/Function.sh && Restore'
-alias 테스트='source $USER_HOME/Function.sh && Broadcast'
+alias 공지='source $USER_HOME/Function.sh && Broadcast'
+alias 테스트='source $USER_HOME/Function.sh && Test'
 # 완료.
 "
 
