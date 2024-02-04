@@ -2,10 +2,11 @@
 Manual() {
   echo -e "\e[96m╔════════════════════════════════════════╗\e[0m"
   echo -e "\e[96m║  입력 가능한 명령어                    ║\e[0m"
-  echo -e "\e[96m║  \e[93m최초 설치                             ║\e[0m"
-  echo -e "\e[96m║  \e[92m서버 시작                             ║\e[0m"
-  echo -e "\e[96m║  \e[91m서버 종료                             ║\e[0m"
-  echo -e "\e[96m║  \e[93m서버 리붓                             ║\e[0m"
+  echo -e "\e[96m║  \e[93m최초설치                              ║\e[0m"
+  echo -e "\e[96m║  \e[92m서버시작                              ║\e[0m"
+  echo -e "\e[96m║  \e[91m서버종료                              ║\e[0m"
+  echo -e "\e[96m║  \e[93m서버리붓                              ║\e[0m"
+  echo -e "\e[96m║  \e[98m서버복원                              ║\e[0m"  
   echo -e "\e[96m║  \e[94m업데이트                              ║\e[0m"
   echo -e "\e[96m║  \e[95m예약                                  ║\e[0m"
   echo -e "\e[96m║  \e[97m세팅                                  ║\e[0m"
@@ -156,8 +157,6 @@ if [ ! -d "$SAVE_DIR" ]; then
     mkdir -p "$SAVE_DIR" || { echo -e "\e[91m디렉터리 생성 실패: $SAVE_DIR\e[0m"; exit 1; }
 fi
 
-#echo -e "\e[32m베이스 파일들을 설치합니다.\e[0m"
-
 # 현재 날짜와 시간으로 저장 파일명 설정 (월일시간분)
 SAVE_NAME="save_$(date +%m%d%H%M).tar.gz"
 SAVE_PATH="$SAVE_DIR/$SAVE_NAME"
@@ -302,5 +301,46 @@ if pgrep -f "PalServer.sh" > /dev/null; then
     echo "서버가 구동중입니다."
 else
     echo "서버가 구동중이지 않습니다."
+fi
+}
+
+# 서버 백업데이터 복원
+Restore() {
+
+# 설명서
+echo -e "\e[96m╔═════════════════════════════════════════════════════════════════════╗\e[0m"
+echo -e "\e[96m║\e[1m 서버 백업데이터 복원 작업 전 설명드립니다. \e[0m                         \e[96m║\e[0m"
+echo -e "\e[96m║                                                                     \e[96m║\e[0m"
+echo -e "\e[96m║\e[1m EX) save_02041546.tar.gz \e[0m                                           \e[96m║\e[0m"
+echo -e "\e[96m║\e[1m 현재 보관 중인 상위 5개의 백업 데이터 리스트를 확인합니다.         \e[0m \e[96m║\e[0m"
+echo -e "\e[96m║\e[1m 원하시는 날짜 EX) 02041546 를 입력하시면 그 데이터로 복원을 합니다.\e[0m \e[96m║\e[0m"
+echo -e "\e[96m╚═════════════════════════════════════════════════════════════════════╝\e[0m"
+
+# 사용자명을 동적으로 가져와 변수에 저장
+USERNAME=$(whoami)
+
+# 사용자의 홈 디렉토리 경로를 변수에 저장
+USER_HOME="/home/$USERNAME"
+
+BACKUP_DIR="$USER_HOME/backup/saved"
+
+# 최신 5개의 파일 리스트 표시
+echo "최신 5개의 백업 데이터 리스트:"
+ls -t "$BACKUP_DIR" | head -n 5
+
+# 사용자로부터 날짜 입력 받기
+read -p "복원할 데이터의 날짜를 입력하세요 (MMDDHHMM): " restore_date
+
+# 입력 받은 날짜에 해당하는 백업 데이터 찾기
+restore_file="$BACKUP_DIR/save_$restore_date.tar.gz"
+
+# 백업 데이터가 존재하는지 확인
+if [ -f "$restore_file" ]; then
+    # 복원 작업 수행
+    echo "선택한 날짜의 백업 데이터를 찾았습니다. 복원을 시작합니다..."
+    # 복원 명령어를 여기에 추가
+    tar -xzf "$restore_file" -C $HOME
+else
+    echo "해당 날짜의 백업 데이터를 찾을 수 없습니다. 복원을 종료합니다."
 fi
 }
