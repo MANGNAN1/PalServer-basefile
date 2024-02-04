@@ -73,6 +73,7 @@ alias 저장='source $USER_HOME/Function.sh && Save'
 alias 예약='source $USER_HOME/Function.sh && Reserve'
 alias 최초설치='source $USER_HOME/Function.sh && Vminstall'
 alias 세팅='source $USER_HOME/Function.sh && Setting'
+alias 서버복구='source $USER_HOME/Function.sh && Restore'
 # 완료.
 "
 
