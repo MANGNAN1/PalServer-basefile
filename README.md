@@ -1,9 +1,5 @@
-chmod +w ~  
+curl -sSL https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Baseinstall.sh -o ~/Baseinstall.sh
 
-rm -f Baseinstall.sh  
+chmod +x ~/Baseinstall.sh
 
-curl -o Baseinstall.sh -O https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Baseinstall.sh  
-
-chmod +x ~/Baseinstall.sh  
-
-~/Baseinstall.sh
+source ~/Baseinstall.sh
