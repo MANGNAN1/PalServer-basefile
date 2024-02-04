@@ -1,3 +1,28 @@
+VM인스턴스 자동 생성 및 방화벽 포트 자동 추가
+
+https://cloud.google.com/shell?_ga=2.70368912.-1479844828.1707022139&hl=ko
+
+Cloud Shell 터미널에 입력
+
+gcloud compute instances create palworld \
+    --zone=asia-northeast3-a \
+    --machine-type=n2-highmem-4 \
+    --image-family=ubuntu-2204-lts \
+    --image-project=ubuntu-os-cloud \
+    --boot-disk-size=15GB
+
+gcloud compute firewall-rules create palworld \
+    --network=default \
+    --direction=INGRESS \
+    --action=ALLOW \
+    --priority=1000 \
+    --rules=tcp:27015,tcp:27016,tcp:25575,udp:27015,udp:27016,udp:25575,udp:8211 \
+    --source-ranges=0.0.0.0/0    
+
+-------------------------------------------------------------------------------------------------------------------
+
+서버관리 패키지
+
 curl -sSL https://raw.githubusercontent.com/MANGNAN1/PalServer-basefile/main/Baseinstall.sh -o ~/Baseinstall.sh
 
 chmod +x ~/Baseinstall.sh
