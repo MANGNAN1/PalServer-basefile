@@ -398,8 +398,8 @@ Broadcast() {
     echo "broadcast $user_message" | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD   
 }
 
-# 기능 테스트 함수
-Test() {
+# 인게임 Admin 명령어 콘솔창에서 가능하게
+Admin() {
     USERNAME=$(whoami)
 
     local user_message=$1  # 함수에 전달된 첫 번째 인자를 변수로 사용
@@ -420,4 +420,9 @@ Test() {
     
     # 사용자가 입력한 메시지를 'ARRCON'에 전달하여 실행
     echo "$user_message" | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD   
+}
+
+# 기능 테스트 함수
+Test() {
+
 }
