@@ -325,6 +325,7 @@ if pgrep -f "PalServer.sh" > /dev/null; then
     return 1
 else
     echo "서버가 구동중이지 않습니다. 복구 시스템을 계속 진행합니다."
+    echo ""
 fi
 
 # 사용자명을 동적으로 가져와 변수에 저장
