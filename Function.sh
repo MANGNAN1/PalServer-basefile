@@ -287,9 +287,8 @@ Setting() {
             esac
         done
     }
-
     # 사용자에게 y 또는 n으로 묻기
-    if ask_yes_no "${BOLD_GREEN}작업을 진행하시겠습니까?${RESET}"; then
+    if ask_yes_no "작업을 진행하시겠습니까?"; then
         nano ~/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
     else
         return 1
