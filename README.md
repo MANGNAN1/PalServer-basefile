@@ -6,9 +6,10 @@ https://cloud.google.com/shell?_ga=2.70368912.-1479844828.1707022139&hl=ko
 ```
 #VM인스턴스 생성
 
-gcloud compute instances create palworld \
+gcloud compute instances create palworld-custom \
     --zone=asia-northeast3-a \
-    --machine-type=n2-highmem-4 \
+    --custom-cpu=4 \
+    --custom-memory=32GB \
     --image-family=ubuntu-2204-lts \
     --image-project=ubuntu-os-cloud \
     --boot-disk-size=15GB
