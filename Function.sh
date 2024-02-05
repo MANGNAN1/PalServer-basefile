@@ -451,3 +451,29 @@ Admin() {
     # 사용자가 입력한 메시지를 'ARRCON'에 전달하여 실행
     echo "$user_message" | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD   
 }
+
+# 구동기 삭제
+Delete() {
+    # 사용자에게 y 또는 n으로 답변을 받는 함수
+    ask_yes_no() {
+        while true; do
+            read -p "$1 (y/n): " answer
+            case $answer in
+                [Yy]* ) return 0;;  # 사용자가 y로 응답
+                [Nn]* ) return 1;;  # 사용자가 n으로 응답
+                * ) echo "y 또는 n으로 답하세요.";;
+            esac
+        done
+    }
+    # 사용자에게 y 또는 n으로 묻기
+    if ask_yes_no "작업을 진행하시겠습니까?"; then
+        rm ~/Save.sh
+        rm ~/Restart.sh
+        rm ~/logfile.log
+        rm ~/Function.sh
+        rm ~/Baseinstall.sh
+        rm ~/ARRCON
+    else
+        return 1
+    fi      
+}
