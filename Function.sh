@@ -360,7 +360,7 @@ echo -e "\e[96m║\e[1m 서버 데이터 복구 작업 전 설명드립니다. \
 echo -e "\e[96m║\e[1m 서버 데이터 복구 시 반드시 서버가 OFF상태여야합니다.\e[0m                \e[96m║\e[0m"
 echo -e "\e[96m║                                                                     \e[96m║\e[0m"
 echo -e "\e[96m║\e[1m 현재 보관 중인 상위 5개의 백업 데이터 리스트를 확인합니다.         \e[0m \e[96m║\e[0m"
-echo -e "\e[96m║\e[1m EX) save_02041546.tar.gz \e[0m                                           \e[96m║\e[0m"
+echo -e "\e[96m║\e[1m EX) 02041546.tar.gz \e[0m                                                \e[96m║\e[0m"
 echo -e "\e[96m║\e[1m 원하시는 날짜 EX) 02041546 를 입력하시면 그 데이터로 복구을 합니다.\e[0m \e[96m║\e[0m"
 echo -e "\e[96m╚═════════════════════════════════════════════════════════════════════╝\e[0m"
 
@@ -389,7 +389,7 @@ ls -t "$BACKUP_DIR" | head -n 5
 read -p "복구할 데이터의 날짜를 입력하세요 (MMDDHHMM): " restore_date
 
 # 입력 받은 날짜에 해당하는 복구 데이터 찾기
-restore_file="$BACKUP_DIR/save_$restore_date.tar.gz"
+restore_file="$BACKUP_DIR/$restore_date.tar.gz"
 
 # 복구 데이터가 존재하는지 확인
 if [ -f "$restore_file" ]; then
