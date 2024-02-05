@@ -397,6 +397,8 @@ if [ -f "$restore_file" ]; then
     echo "선택한 날짜의 복구 데이터를 찾았습니다. 복구을 시작합니다..."
     # 복구 명령어를 여기에 추가
     tar -xzf "$restore_file" -C /
+    sleep 2
+    echo "복구완료."
 else
     echo "해당 날짜의 복구 데이터를 찾을 수 없습니다. 복구을 종료합니다."
 fi
