@@ -222,16 +222,47 @@ Vminstall() {
     #OS 방화벽 개방
     sudo apt update
     
-    #방화벽 개방 명령어 실행
+    # 확인할 포트 리스트
+    TCP_PORTS=(27015 27016 25575)
+    UDP_PORTS=(27015 27016 25575 8211)
+
+    # 이미 열려 있는지 확인하는 함수
+    check_port() {
+        local proto=$1
+        local port=$2
+        if sudo iptables -C INPUT -p $proto --dport $port -j ACCEPT 2>/dev/null; then
+            return 0  # 이미 열려 있음
+        else
+            return 1  # 열려 있지 않음
+        fi
+    }
+
+    # 방화벽 개방 명령어 실행
     echo -e "\e[32mOS 방화벽을 개방합니다.\e[0m"
-    sudo iptables -I INPUT -p tcp --dport 27015 -j ACCEPT
-    sudo iptables -I INPUT -p tcp --dport 27016 -j ACCEPT
-    sudo iptables -I INPUT -p tcp --dport 25575 -j ACCEPT
-    sudo iptables -I INPUT -p udp --dport 27015 -j ACCEPT
-    sudo iptables -I INPUT -p udp --dport 27016 -j ACCEPT
-    sudo iptables -I INPUT -p udp --dport 25575 -j ACCEPT
-    sudo iptables -I INPUT -p udp --dport 8211 -j ACCEPT
-    echo -e "\e[32m설치완료.\e[0m"
+
+    # TCP 포트 개방
+    for port in "${TCP_PORTS[@]}"; do
+        if check_port tcp $port; then
+            echo -e "\e[33mTCP 포트 $port 이미 열려 있습니다. 패스합니다.\e[0m"
+        else
+            # TCP 포트가 열려 있지 않으면 개방 명령어 실행
+            sudo iptables -I INPUT -p tcp --dport $port -j ACCEPT
+            echo -e "\e[32mTCP 포트 $port 개방 완료.\e[0m"
+        fi
+    done
+
+    # UDP 포트 개방
+    for port in "${UDP_PORTS[@]}"; do
+        if check_port udp $port; then
+            echo -e "\e[33mUDP 포트 $port 이미 열려 있습니다. 패스합니다.\e[0m"
+        else
+            # UDP 포트가 열려 있지 않으면 개방 명령어 실행
+            sudo iptables -I INPUT -p udp --dport $port -j ACCEPT
+            echo -e "\e[32mUDP 포트 $port 개방 완료.\e[0m"
+        fi
+    done
+
+    echo -e "\e[32m방화벽 포트 개방완료.\e[0m"
     
     #방화벽 개방 확인
     sudo iptables -S
