@@ -133,7 +133,7 @@ elif [ "$action" == "3" ]; then
 elif [ "$action" == "4" ]; then
     crontab -l
 
-elif [[ "$action" == "취소" || "$action" == "c" ]]; then
+elif [[ "$action" == "ㅊ" || "$action" == "c" ]]; then
     return 0
 else
     echo "올바른 명령을 입력하세요."
