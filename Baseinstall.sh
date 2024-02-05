@@ -41,7 +41,7 @@ echo -e "\e[32m완료.\e[0m"
 
 #실행권한 획득
 #chmod +x $USER_HOME/Start.sh $USER_HOME/Stop.sh $USER_HOME/Restart.sh $USER_HOME/Update.sh $USER_HOME/Manual.sh $USER_HOME/Save.sh $USER_HOME/Reserve.sh $USER_HOME/Vminstall.sh
-chmod +x $USER_HOME/Function.sh $USER_HOME/Restart.sh $USER_HOME/Save.sh $HOME/ARRCON $HOME/mcrcon/mcrcon
+chmod +x $USER_HOME/Function.sh $USER_HOME/Restart.sh $USER_HOME/Save.sh $HOME/ARRCON
 
 # dos2unix 설치 여부 확인
 if command -v dos2unix &> /dev/null; then
@@ -91,6 +91,7 @@ alias 세팅='source $USER_HOME/Function.sh && Setting'
 alias 서버복구='source $USER_HOME/Function.sh && Restore'
 alias 공지='source $USER_HOME/Function.sh && Broadcast'
 alias admin='source $USER_HOME/Function.sh && Admin'
+alias 삭제='source $USER_HOME/Function.sh && Delete'
 # 완료.
 "
 
