@@ -18,17 +18,65 @@ Reserve() {
 
 #예약 설명서 에코
     echo -e "\e[96m╔══════════════════════════════════════════════╗\e[0m"
-    echo -e "\e[96m║  자동백업 예약을 추가하려면 '백업예약추가'   ║\e[0m"    
-    echo -e "\e[96m║  자동리붓 예약을 추가하려면 '리붓예약추가'   ║\e[0m"
-    echo -e "\e[96m║  모든 예약을 제거하려면 '예약제거'           ║\e[0m"
-    echo -e "\e[96m║  예약 리스트를 보시려면 '리스트'             ║\e[0m"
-    echo -e "\e[96m║  취소하려면 '취소'                           ║\e[0m"
+    echo -e "\e[96m║  자동백업 예약을 추가하려면 '1'   ║\e[0m"    
+    echo -e "\e[96m║  자동리붓 예약을 추가하려면 '2'   ║\e[0m"
+    echo -e "\e[96m║  모든 예약을 제거하려면 '3'           ║\e[0m"
+    echo -e "\e[96m║  예약 리스트를 보시려면 '4'             ║\e[0m"
+    echo -e "\e[96m║  취소하려면 'c'                           ║\e[0m"
     echo -e "\e[96m╚══════════════════════════════════════════════╝\e[0m"
 
 # 사용자로부터 입력 받기
 read -p "명령어를 입력하세요: " action
 
-if [ "$action" == "리붓예약추가" ]; then
+if [ "$action" == "1" ]; then
+
+    # 사용자명을 동적으로 가져와 변수에 저장
+    USERNAME=$(whoami)
+
+    # 사용자의 홈 디렉토리 경로를 변수에 저장
+    USER_HOME="/home/$USERNAME"
+    
+    # 존재하는 크론탭 내용을 가져와 변수에 저장
+    EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
+
+    # 삭제할 크론탭 예약을 포함한 문자열
+    TARGET_CRON="Save"
+    
+    # 새로운 크론탭 예약을 추가할 표현식
+    NEW_CRONTAB="$USER_HOME/Save.sh >> $USER_HOME/logfile.log 2>&1"
+
+    echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
+    echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
+    echo -e "\e[96m║                                                           ║\e[0m"
+    echo -e "\e[96m║ \e[92m┌───────────────────── 분 (0 - 59)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ ┌─────────────────── 시 (0 - 23)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ ┌───────────────── 일 (1 - 31)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ ┌─────────────── 월 (1 - 12)                        ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ │ ┌───────────── 요일 (0 - 6)                       ║\e[0m"
+    echo -e "\e[96m║ \e[92m│ │ │ │ │                                                 ║\e[0m"
+    echo -e "\e[96m║ \e[92m* * * * * │                                               ║\e[0m"
+    echo -e "\e[96m║ \e[92mEX) 0 */12 * * * = 00시 기준 12시간마다 저장 00시 12시    ║\e[0m"    
+    echo -e "\e[96m║ \e[92mEX) 0 */8 * * * = 00시 기준 8시간마다 저장 00시 8시 16시  ║\e[0m"  
+    echo -e "\e[96m║ \e[92mEX) 0 * * * * = 매시 0분 마다 저장                        ║\e[0m"   
+    echo -e "\e[96m║ \e[92mEX) 0,30 * * * * = 매시 0분, 30분 마다 저장               ║\e[0m"      
+    echo -e "\e[96m╚═══════════════════════════════════════════════════════════╝\e[0m" 
+    
+    # 사용자로부터 cron 표현식 입력 받기
+    read -p "Cron 표현식을 입력하세요 (EX: 0,30 * * * *): " cron_expression
+
+# 기존 크론탭에 삭제할 예약이 있는지 확인
+if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
+    # 삭제할 예약이 포함된 줄을 크론탭에서 제외하고 설정
+    (echo "$EXISTING_CRONTAB" | grep -v "$TARGET_CRON") | crontab -
+    #echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
+  	(crontab -l ; echo "$cron_expression $NEW_CRONTAB") | crontab -
+  	echo "백업 예약이 추가되었습니다."	
+else
+  	(crontab -l ; echo "$cron_expression $NEW_CRONTAB") | crontab -
+  	echo "백업 예약이 추가되었습니다."
+fi
+
+elif [ "$action" == "2" ]; then
 
     # 사용자명을 동적으로 가져와 변수에 저장
     USERNAME=$(whoami)
@@ -76,64 +124,16 @@ else
   	(crontab -l ; echo "$cron_expression $NEW_CRONTAB") | crontab -
   	echo "리붓 예약이 추가되었습니다."
 fi
-
-elif [ "$action" == "백업예약추가" ]; then
-
-    # 사용자명을 동적으로 가져와 변수에 저장
-    USERNAME=$(whoami)
-
-    # 사용자의 홈 디렉토리 경로를 변수에 저장
-    USER_HOME="/home/$USERNAME"
     
-    # 존재하는 크론탭 내용을 가져와 변수에 저장
-    EXISTING_CRONTAB=$(crontab -l 2>/dev/null)
-
-    # 삭제할 크론탭 예약을 포함한 문자열
-    TARGET_CRON="Save"
-    
-    # 새로운 크론탭 예약을 추가할 표현식
-    NEW_CRONTAB="$USER_HOME/Save.sh >> $USER_HOME/logfile.log 2>&1"
-
-    echo -e "\e[96m╔═══════════════════════════════════════════════════════════╗\e[0m"
-    echo -e "\e[96m║ \e[93m* * * * *  실행할 명령어                                  ║\e[0m"
-    echo -e "\e[96m║                                                           ║\e[0m"
-    echo -e "\e[96m║ \e[92m┌───────────────────── 분 (0 - 59)                        ║\e[0m"
-    echo -e "\e[96m║ \e[92m│ ┌─────────────────── 시 (0 - 23)                        ║\e[0m"
-    echo -e "\e[96m║ \e[92m│ │ ┌───────────────── 일 (1 - 31)                        ║\e[0m"
-    echo -e "\e[96m║ \e[92m│ │ │ ┌─────────────── 월 (1 - 12)                        ║\e[0m"
-    echo -e "\e[96m║ \e[92m│ │ │ │ ┌───────────── 요일 (0 - 6)                       ║\e[0m"
-    echo -e "\e[96m║ \e[92m│ │ │ │ │                                                 ║\e[0m"
-    echo -e "\e[96m║ \e[92m* * * * * │                                               ║\e[0m"
-    echo -e "\e[96m║ \e[92mEX) 0 */12 * * * = 00시 기준 12시간마다 저장 00시 12시    ║\e[0m"    
-    echo -e "\e[96m║ \e[92mEX) 0 */8 * * * = 00시 기준 8시간마다 저장 00시 8시 16시  ║\e[0m"  
-    echo -e "\e[96m║ \e[92mEX) 0 * * * * = 매시 0분 마다 저장                        ║\e[0m"   
-    echo -e "\e[96m║ \e[92mEX) 0,30 * * * * = 매시 0분, 30분 마다 저장               ║\e[0m"      
-    echo -e "\e[96m╚═══════════════════════════════════════════════════════════╝\e[0m" 
-    
-    # 사용자로부터 cron 표현식 입력 받기
-    read -p "Cron 표현식을 입력하세요 (EX: 0,30 * * * *): " cron_expression
-
-# 기존 크론탭에 삭제할 예약이 있는지 확인
-if [[ -n "$EXISTING_CRONTAB" && "$EXISTING_CRONTAB" == *"$TARGET_CRON"* ]]; then
-    # 삭제할 예약이 포함된 줄을 크론탭에서 제외하고 설정
-    (echo "$EXISTING_CRONTAB" | grep -v "$TARGET_CRON") | crontab -
-    #echo "기존에 존재하던 리붓 예약이 삭제되었습니다."
-  	(crontab -l ; echo "$cron_expression $NEW_CRONTAB") | crontab -
-  	echo "백업 예약이 추가되었습니다."	
-else
-  	(crontab -l ; echo "$cron_expression $NEW_CRONTAB") | crontab -
-  	echo "백업 예약이 추가되었습니다."
-fi
-    
-elif [ "$action" == "예약제거" ]; then
+elif [ "$action" == "3" ]; then
     #Crontab list
     crontab -r
     echo "작업이 제거되었습니다."
 
-elif [ "$action" == "리스트" ]; then
+elif [ "$action" == "4" ]; then
     crontab -l
 
-elif [ "$action" == "취소"||"c" ]; then
+elif [[ "$action" == "취소" || "$action" == "c" ]]; then
     exit 0 
 else
     echo "올바른 명령을 입력하세요."
