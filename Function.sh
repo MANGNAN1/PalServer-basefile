@@ -197,10 +197,15 @@ fi
 
 # 서버 시작 함수
 Start() {
-    echo -e "\e[32m서버를 구동합니다.\e[0m"
-    screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS EpicApp=PalServer"
-    sleep 5
-    echo -e "\e[32m구동완료.\e[0m"
+    # PalServer.sh 프로세스가 실행 중인지 확인
+    if pgrep -f "PalServer.sh" > /dev/null; then
+        echo "서버가 이미 구동중입니다."
+    else
+        echo -e "\e[32m서버를 구동합니다.\e[0m"
+        screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS EpicApp=PalServer"
+        sleep 5
+        echo -e "\e[32m구동완료.\e[0m"
+    fi
 }
 
 # 서버 종료 함수
