@@ -161,51 +161,61 @@ Restart() {
 
 # 파일 저장 함수
 Save() {
-SAVE_DIR="$HOME/backup/saved"
-MAX_BACKUPS=30
 
-if [ ! -d "$SAVE_DIR" ]; then
-    mkdir -p "$SAVE_DIR" || { echo -e "\e[91m디렉터리 생성 실패: $SAVE_DIR\e[0m"; exit 1; }
-fi
+    admin save
 
-# 현재 날짜와 시간으로 저장 파일명 설정 (월일시간분)
-SAVE_NAME="$(date +%m%d%H%M).tar.gz"
-SAVE_PATH="$SAVE_DIR/$SAVE_NAME"
-FOLDER_PATH="$HOME/Steam/steamapps/common/PalServer/Pal/Saved"
+    sleep 3
 
-# 폴더 압축과 에러 로그 기록
-tar -czf "$SAVE_PATH" "$FOLDER_PATH"
+    SAVE_DIR="$HOME/backup/saved"
+    MAX_BACKUPS=30
 
-if [ $? -eq 0 ]; then
-    echo -e "\e[32m저장이 완료되었습니다: $SAVE_PATH\e[0m"
+    if [ ! -d "$SAVE_DIR" ]; then
+        mkdir -p "$SAVE_DIR" || { echo -e "\e[91m디렉터리 생성 실패: $SAVE_DIR\e[0m"; exit 1; }
+    fi
 
-    # 저장 폴더와 하위 폴더에 모든 권한 부여
-    chmod -R 777 "$SAVE_DIR" || { echo -e "\e[91m권한 변경 실패: $SAVE_DIR\e[0m"; exit 1; }
+    # 현재 날짜와 시간으로 저장 파일명 설정 (월일시간분)
+    SAVE_NAME="$(date +%m%d%H%M).tar.gz"
+    SAVE_PATH="$SAVE_DIR/$SAVE_NAME"
+    FOLDER_PATH="$HOME/Steam/steamapps/common/PalServer/Pal/Saved"
 
-    # 백업 데이터 개수가 MAX_BACKUPS를 넘으면 가장 오래된 데이터 삭제
-    while [ $(ls -1 "$SAVE_DIR" | grep -c '.tar.gz') -gt $MAX_BACKUPS ]; do
-        OLDEST_FILE=$(ls -1t "$SAVE_DIR" | grep '.tar.gz' | tail -n 1)
-        rm -f "$SAVE_DIR/$OLDEST_FILE"
-        echo -e "\e[33m가장 오래된 백업 데이터 삭제: $OLDEST_FILE\e[0m"
-    done
-    
-else
-    echo -e "\e[91m저장 중 오류가 발생했습니다. 로그를 확인하세요: $HOME/backup/error.log\e[0m"
-    exit 1
-fi
+    # 폴더 압축과 에러 로그 기록
+    tar -czf "$SAVE_PATH" "$FOLDER_PATH"
+
+    if [ $? -eq 0 ]; then
+        echo -e "\e[32m저장이 완료되었습니다: $SAVE_PATH\e[0m"
+
+        # 저장 폴더와 하위 폴더에 모든 권한 부여
+        chmod -R 777 "$SAVE_DIR" || { echo -e "\e[91m권한 변경 실패: $SAVE_DIR\e[0m"; exit 1; }
+
+        # 백업 데이터 개수가 MAX_BACKUPS를 넘으면 가장 오래된 데이터 삭제
+        while [ $(ls -1 "$SAVE_DIR" | grep -c '.tar.gz') -gt $MAX_BACKUPS ]; do
+            OLDEST_FILE=$(ls -1t "$SAVE_DIR" | grep '.tar.gz' | tail -n 1)
+            rm -f "$SAVE_DIR/$OLDEST_FILE"
+            echo -e "\e[33m가장 오래된 백업 데이터 삭제: $OLDEST_FILE\e[0m"
+        done
+        
+    else
+        echo -e "\e[91m저장 중 오류가 발생했습니다. 로그를 확인하세요: $HOME/backup/error.log\e[0m"
+        exit 1
+    fi
 }
 
 # 서버 시작 함수
 Start() {
-    # PalServer.sh 프로세스가 실행 중인지 확인
-    if pgrep -f "PalServer.sh" > /dev/null; then
+    # 찾고자 하는 프로세스의 이름
+    process_name="PalServer-Linux-Test"
+
+    # ps 명령어로 프로세스 확인하고 grep으로 검색
+    if ps aux | grep -v grep | grep "$process_name" > /dev/null
+    then
         echo "서버가 이미 구동중입니다."
+        return 1    
     else
         echo -e "\e[32m서버를 구동합니다.\e[0m"
         screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS EpicApp=PalServer"
         sleep 5
         echo -e "\e[32m구동완료.\e[0m"
-    fi
+    fi    
 }
 
 # 서버 종료 함수
@@ -217,9 +227,19 @@ echo -e "\e[32m종료 완료.\e[0m"
 
 # 서버 엔진 업데이트 함수
 Update() {
-    echo -e "\e[32m서버를 업데이트합니다.\e[0m"
-    steamcmd +login anonymous +app_update 2394010 validate +quit
-    echo -e "\e[32m업데이트 완료.\e[0m"
+    # 찾고자 하는 프로세스의 이름
+    process_name="PalServer-Linux-Test"
+
+    # ps 명령어로 프로세스 확인하고 grep으로 검색
+    if ps aux | grep -v grep | grep "$process_name" > /dev/null
+    then
+        echo "서버가 구동중입니다. 업데이트를 취소합니다."
+        return 1    
+    else
+        echo -e "\e[32m서버를 업데이트합니다.\e[0m"
+        steamcmd +login anonymous +app_update 2394010 validate +quit
+        echo -e "\e[32m업데이트 완료.\e[0m"
+    fi     
 }
 
 # 최초 vm세팅 함수
