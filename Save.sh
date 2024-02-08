@@ -1,6 +1,6 @@
 #!/bin/bash
 # 인게임 Admin 명령어 콘솔창에서 가능하게
-Admin() {
+Admin_Save() {
     USERNAME=$(whoami)
 
     local user_message=$1  # 함수에 전달된 첫 번째 인자를 변수로 사용
@@ -30,9 +30,9 @@ Admin() {
     # ps 명령어로 프로세스 확인하고 grep으로 검색
     if ps aux | grep -v grep | grep "$process_name" > /dev/null
 		then
-		Admin
+		Admin_Save
 
-		sleep 3
+		sleep 5
 
 		SAVE_DIR="$HOME/backup/saved"
 		MAX_BACKUPS=30
