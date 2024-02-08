@@ -492,9 +492,12 @@ Admintest() {
     RCON_PORT=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
 
     # 추출된 값 출력
-    echo "AdminPassword: $ADMIN_PASSWORD"
-    echo "RCONPort: $RCON_PORT"
-    echo "RCONENABLED: $RCON_ENABLED"
+    #echo "AdminPassword: $ADMIN_PASSWORD"
+    #echo "RCONPort: $RCON_PORT"
+    #echo "RCONENABLED: $RCON_ENABLED"
+    echo -e "AdminPassword: \e[92m$ADMIN_PASSWORD\e[0m"
+    echo -e "RCONPort: \e[92m$RCON_PORT\e[0m"
+    echo -e "RCONENABLED: \e[92m$RCON_ENABLED\e[0m"   
 }
 
 # 구동기 삭제
