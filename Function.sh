@@ -485,7 +485,8 @@ Admintest() {
     ADMIN_PASSWORD=$(awk '/OptionSettings=/ {match($0, /AdminPassword="([^"]*)"/, arr); print arr[1]}' "$ini_file")
 
     # RCONEnable 값
-    RCON_ENABLED=$(awk '/OptionSettings=/ {match($0, /RCONEnabled="([^"]*)"/, arr); print arr[1]}' "$ini_file")
+    #RCON_ENABLED=$(awk '/OptionSettings=/ {match($0, /RCONEnabled="([^"]*)"/, arr); print arr[1]}' "$ini_file")
+    RCON_ENABLED=$(awk '/RCONEnabled=/ {match($0, /RCONEnabled=([Tt]rue|[Ff]alse)/, arr); print (arr[1])}' "$ini_file")
     
     # RCONPort 값 추출
     RCON_PORT=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
