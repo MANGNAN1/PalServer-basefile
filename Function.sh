@@ -477,6 +477,21 @@ Admin() {
     echo "$user_message" | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD   
 }
 
+Admintest() {
+    USERNAME=$(whoami)
+
+    ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+    # Admin 패스워드 값 추출
+    ADMIN_PASSWORD=$(awk '/OptionSettings=/ {match($0, /AdminPassword="([^"]*)"/, arr); print arr[1]}' "$ini_file")
+    
+    # RCONPort 값 추출
+    RCON_PORT=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
+
+    # 추출된 값 출력
+    echo "AdminPassword: $ADMIN_PASSWORD"
+    echo "RCONPort: $RCON_PORT"
+}
+
 # 구동기 삭제
 Delete() {
     # 사용자에게 y 또는 n으로 답변을 받는 함수
