@@ -500,6 +500,38 @@ Admintest() {
     echo -e "RCONENABLED: \e[92m$RCON_ENABLED\e[0m"   
 }
 
+ReconSetting() {
+    # 사용자에게 y 또는 n으로 답변을 받는 함수
+    ask_yes_no() {
+        while true; do
+            read -p "$1 (y/n): " answer
+            case $answer in
+                [Yy]* ) return 0;;  # 사용자가 y로 응답
+                [Nn]* ) return 1;;  # 사용자가 n으로 응답
+                * ) echo "y 또는 n으로 답하세요.";;
+            esac
+        done
+    }
+    # 사용자에게 y 또는 n으로 묻기
+    if ask_yes_no "리콘을 허용하시겠습니까?"; then
+        USERNAME=$(whoami)
+        ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+        
+        # RCONEnabled 값을 True로 변경
+        sed -i 's/RCONEnabled=.*/RCONEnabled=True/' "$ini_file"
+        
+        echo "RCONEnabled 값을 True로 변경했습니다."
+    else
+        USERNAME=$(whoami)
+        ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+        
+        # RCONEnabled 값을 False로 변경
+        sed -i 's/RCONEnabled=.*/RCONEnabled=False/' "$ini_file"
+        
+        echo "RCONEnabled 값을 False로 변경했습니다."
+    fi    
+}
+
 # 구동기 삭제
 Delete() {
     # 사용자에게 y 또는 n으로 답변을 받는 함수
