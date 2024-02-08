@@ -6,7 +6,7 @@
     # ps 명령어로 프로세스 확인하고 grep으로 검색
     if ps aux | grep -v grep | grep "$process_name" > /dev/null
 		then
-		admin save
+		Admin save
 
 		sleep 3
 
@@ -45,3 +45,27 @@
     else
         echo -e "\e[32m서버를 구동중이지 않습니다 SAVE명령을 취소합니다.\e[0m"
     fi   
+
+# 인게임 Admin 명령어 콘솔창에서 가능하게
+Admin() {
+    USERNAME=$(whoami)
+
+    local user_message=$1  # 함수에 전달된 첫 번째 인자를 변수로 사용
+
+    ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+    # Admin 패스워드 값 추출
+    ADMIN_PASSWORD=$(awk '/OptionSettings=/ {match($0, /AdminPassword="([^"]*)"/, arr); print arr[1]}' "$ini_file")
+    
+    # RCONPort 값 추출
+    RCON_PORT=$(awk '/OptionSettings=/ {match($0, /RCONPort=([0-9]+)/, arr); print arr[1]}' "$ini_file")
+
+    # 추출된 값 출력
+    #echo "AdminPassword: $ADMIN_PASSWORD"
+    #echo "RCONPort: $RCON_PORT"
+
+    # 사용자에게 메시지 입력 받기
+    #read -r -p "할말: " user_message
+    
+    # 사용자가 입력한 메시지를 'ARRCON'에 전달하여 실행
+    echo "$user_message" | ./ARRCON -P $RCON_PORT -p $ADMIN_PASSWORD   
+}
