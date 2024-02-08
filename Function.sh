@@ -597,6 +597,8 @@ Admin_Password_Set() {
 	# 패스워드 값을 입력값으로 변경
 	sed -i "s/AdminPassword=.*/AdminPassword=\"$user_message\"/" "$ini_file"
 
+	echo "변경 완료했습니다."
+
  	USERNAME=$(whoami)
 	# in_file 새로 불러오기
 	ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
