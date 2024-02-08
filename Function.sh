@@ -342,36 +342,32 @@ OptionSettings=(Difficulty=None,DayTimeSpeedRate=1.000000,NightTimeSpeedRate=1.0
 
 # 세팅 진입 함수
 Setting() {
-
-#세팅 설명서 에코
-    echo -e "\e[96m╔══════════════════════════════════════════════╗\e[0m"
-    echo -e "\e[96m║  서버 월드옵션 성정 '1'              ║\e[0m"    
-    echo -e "\e[96m║  어드민패스워드 설정 '2'              ║\e[0m"
-    echo -e "\e[96m║  리콘 설정 '3'                  ║\e[0m"
-    echo -e "\e[96m║  취소하려면 'c'                              ║\e[0m"
-    echo -e "\e[96m╚══════════════════════════════════════════════╝\e[0m"
-
-# 사용자로부터 입력 받기
-read -p "명령어를 입력하세요: " action
-
-if [ "$action" == "1" ]; then
-    ServerSetting		
-fi
-
-elif [ "$action" == "2" ]; then
-    Admin_Password_Set	
-fi   
-
-elif [ "$action" == "3" ]; then
-    ReconSetting
-fi
-
-elif [[ "$action" == "ㅊ" || "$action" == "c" ]]; then
-    return 0
-else
-    echo "올바른 명령을 입력하세요."
-fi
-
+	#세팅 설명서 에코
+	    echo -e "\e[96m╔══════════════════════════════════════════════╗\e[0m"
+	    echo -e "\e[96m║  서버 월드옵션 성정 '1'              ║\e[0m"    
+	    echo -e "\e[96m║  어드민패스워드 설정 '2'              ║\e[0m"
+	    echo -e "\e[96m║  리콘 설정 '3'                  ║\e[0m"
+	    echo -e "\e[96m║  취소하려면 'c'                              ║\e[0m"
+	    echo -e "\e[96m╚══════════════════════════════════════════════╝\e[0m"
+	
+	# 사용자로부터 입력 받기
+	read -p "명령어를 입력하세요: " action
+	
+	if [ "$action" == "1" ]; then
+	    ServerSetting		
+	
+	elif [ "$action" == "2" ]; then
+	    Admin_Password_Set	  
+	
+	elif [ "$action" == "3" ]; then
+	    ReconSetting
+	
+	elif [[ "$action" == "ㅊ" || "$action" == "c" ]]; then
+	    return 0
+     
+	else
+	    echo "올바른 명령을 입력하세요."
+	fi
 }
 
 # 서버 세팅 함수
