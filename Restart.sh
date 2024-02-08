@@ -7,10 +7,14 @@ USERNAME=$(whoami)
 # 사용자의 홈 디렉토리 경로를 변수에 저장
 USER_HOME="/home/$USERNAME"
 
+admin save
+
+sleep 3
+
 $USER_HOME/Save.sh
 
 screen -S PalServerSession -X stuff $'\003'
 steamcmd +login anonymous +app_update 2394010 validate +quit
 screen -S PalServerSession -dm bash -c "cd ~/Steam/steamapps/common/PalServer && ./PalServer.sh -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS"
-sleep 5
+sleep 3
 echo -e "\e[32m리붓 완료.\e[0m"
