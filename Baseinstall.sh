@@ -76,7 +76,8 @@ update_bashrc() {
     alias 서버복구='source $USER_HOME/Function.sh && Restore'
     alias 공지='source $USER_HOME/Function.sh && Broadcast'
     alias admin='source $USER_HOME/Function.sh && Admin'
-    alias 어드민리콘='source $USER_HOME/Function.sh && Admintest'    
+    alias 어드민인포='source $USER_HOME/Function.sh && Admintest'   
+    alias 리콘세팅='source $USER_HOME/Function.sh && ReconSetting'     
     alias 삭제='source $USER_HOME/Function.sh && Delete'
     
     # 완료.
