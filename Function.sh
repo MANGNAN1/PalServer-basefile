@@ -340,8 +340,42 @@ Vminstall() {
 OptionSettings=(Difficulty=None,DayTimeSpeedRate=1.000000,NightTimeSpeedRate=1.000000,ExpRate=1.000000,PalCaptureRate=1.000000,PalSpawnNumRate=1.000000,PalDamageRateAttack=1.000000,PalDamageRateDefense=1.000000,PlayerDamageRateAttack=1.000000,PlayerDamageRateDefense=1.000000,PlayerStomachDecreaceRate=1.000000,PlayerStaminaDecreaceRate=1.000000,PlayerAutoHPRegeneRate=1.000000,PlayerAutoHpRegeneRateInSleep=1.000000,PalStomachDecreaceRate=1.000000,PalStaminaDecreaceRate=1.000000,PalAutoHPRegeneRate=1.000000,PalAutoHpRegeneRateInSleep=1.000000,BuildObjectDamageRate=1.000000,BuildObjectDeteriorationDamageRate=1.000000,CollectionDropRate=1.000000,CollectionObjectHpRate=1.000000,CollectionObjectRespawnSpeedRate=1.000000,EnemyDropItemRate=1.000000,DeathPenalty=All,bEnablePlayerToPlayerDamage=False,bEnableFriendlyFire=False,bEnableInvaderEnemy=True,bActiveUNKO=False,bEnableAimAssistPad=True,bEnableAimAssistKeyboard=False,DropItemMaxNum=3000,DropItemMaxNum_UNKO=100,BaseCampMaxNum=128,BaseCampWorkerMaxNum=15,DropItemAliveMaxHours=1.000000,bAutoResetGuildNoOnlinePlayers=False,AutoResetGuildTimeNoOnlinePlayers=72.000000,GuildPlayerMaxNum=20,PalEggDefaultHatchingTime=2.000000,WorkSpeedRate=1.000000,bIsMultiplay=False,bIsPvP=False,bCanPickupOtherGuildDeathPenaltyDrop=False,bEnableNonLoginPenalty=True,bEnableFastTravel=True,bIsStartLocationSelectByMap=True,bExistPlayerAfterLogout=False,bEnableDefenseOtherGuildPlayer=False,CoopPlayerMaxNum=4,ServerPlayerMaxNum=32,ServerName="Default Palworld Server",ServerDescription="",AdminPassword="12341234",ServerPassword="",PublicPort=8211,PublicIP="",RCONEnabled=True,RCONPort=25575,Region="",bUseAuth=True,BanListURL="https://api.palworldgame.com/api/banlist.txt")" > /home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini
 }
 
-# 세팅 함수
+# 세팅 진입 함수
 Setting() {
+
+#세팅 설명서 에코
+    echo -e "\e[96m╔══════════════════════════════════════════════╗\e[0m"
+    echo -e "\e[96m║  서버 월드옵션 성정 '1'              ║\e[0m"    
+    echo -e "\e[96m║  어드민패스워드 설정 '2'              ║\e[0m"
+    echo -e "\e[96m║  리콘 설정 '3'                  ║\e[0m"
+    echo -e "\e[96m║  취소하려면 'c'                              ║\e[0m"
+    echo -e "\e[96m╚══════════════════════════════════════════════╝\e[0m"
+
+# 사용자로부터 입력 받기
+read -p "명령어를 입력하세요: " action
+
+if [ "$action" == "1" ]; then
+    ServerSetting		
+fi
+
+elif [ "$action" == "2" ]; then
+    Admin_Password_Set	
+fi   
+
+elif [ "$action" == "3" ]; then
+    ReconSetting
+fi
+
+elif [[ "$action" == "ㅊ" || "$action" == "c" ]]; then
+    return 0
+else
+    echo "올바른 명령을 입력하세요."
+fi
+
+}
+
+# 서버 세팅 함수
+ServerSetting() {
     # 색상 및 스타일 정의
     BOLD_GREEN="\e[1;32m"
     BOLD_YELLOW="\e[1;33m"
@@ -538,6 +572,43 @@ ReconSetting() {
         
         echo "RCONEnabled 값을 False로 변경했습니다."
     fi    
+}
+
+# 어드민 패스워드 설정 함수
+Admin_Password_Set() {
+    # 사용자에게 y 또는 n으로 답변을 받는 함수
+    ask_yes_no() {
+        while true; do
+            read -p "$1 (y/n): " answer
+            case $answer in
+                [Yy]* ) return 0;;  # 사용자가 y로 응답
+                [Nn]* ) return 1;;  # 사용자가 n으로 응답
+                * ) echo "y 또는 n으로 답하세요.";;
+            esac
+        done
+    }
+    # 사용자에게 y 또는 n으로 묻기
+    if ask_yes_no "어드민 패스워드를 변경하시겠습니까?"; then
+        USERNAME=$(whoami)
+        ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+        
+	# 사용자에게 메시지 입력 받기
+   	read -r -p "패스워드: " user_message
+	
+	# 패스워드 값을 입력값으로 변경
+        sed -i 's/AdminPassword=.*/AdminPassword=$user_message/' "$ini_file"
+
+ 	USERNAME=$(whoami)
+	# in_file 새로 불러오기
+	ini_file="/home/$USERNAME/Steam/steamapps/common/PalServer/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini"
+        # Admin 패스워드 값 추출
+        ADMIN_PASSWORD=$(awk '/OptionSettings=/ {match($0, /AdminPassword="([^"]*)"/, arr); print arr[1]}' "$ini_file")        
+	# Admin 패스워드 값 출력
+        echo -e "AdminPassword: \e[92m$ADMIN_PASSWORD\e[0m"
+	
+    else
+        return 1
+    fi   
 }
 
 # 구동기 삭제
