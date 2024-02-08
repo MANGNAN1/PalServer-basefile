@@ -1,3 +1,4 @@
+#!/bin/bash
 # 디렉토리 경로와 권한 확인
     # 찾고자 하는 프로세스의 이름
     process_name="PalServer-Linux-Test"
